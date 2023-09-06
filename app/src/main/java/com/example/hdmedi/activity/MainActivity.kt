@@ -1,7 +1,8 @@
-package com.example.hdmedi
+package com.example.hdmedi.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.hdmedi.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
