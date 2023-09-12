@@ -2,4 +2,6 @@
     <string name="app_name">HDmedi</string>
     <string name="naver_client_id">ugO442Swhk_dkXbq4HVV</string>
     <string name="naver_client_secret">9OGzIhrOjQ</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
