@@ -12,12 +12,12 @@
             android:layout_height="140dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/ic_back1"/>
+            android:src="@drawable/ic_circle1"/>
         
         <ImageView
             android:layout_width="68dp"
             android:layout_height="68dp"
-            android:src="@drawable/ic_back2"
+            android:src="@drawable/ic_circle2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginStart="23dp"
@@ -59,7 +59,7 @@
                 android:gravity="center_vertical"
                 android:padding="20dp"
                 android:clickable="true"
-                android:background="@drawable/test">
+                android:background="@drawable/cardview_selector">
                 <ImageView
                     android:id="@+id/image"
                     android:layout_width="60dp"
@@ -71,13 +71,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="아이의 부모 입니다"
-                    android:textSize="15sp"
+                    android:textSize="17sp"
                     android:textColor="@color/black"
                     android:fontFamily="@font/pretendard_semibold"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <com.google.android.material.card.MaterialCardView
+        <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="85dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -94,7 +94,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:background="@drawable/test"
+                android:background="@drawable/cardview_selector"
                 android:clickable="true"
                 android:padding="20dp">
                 <ImageView
@@ -103,17 +103,17 @@
                     android:layout_marginEnd="10dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_teacher"
-                    android:adjustViewBounds="true" />/>
+                    android:adjustViewBounds="true" />
                 <TextView
                     android:id="@+id/teacherText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="아이의 선생님 입니다"
-                    android:textSize="15sp"
+                    android:textSize="17sp"
                     android:textColor="@color/black"
                     android:fontFamily="@font/pretendard_semibold"/>
             </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+        </androidx.cardview.widget.CardView>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/nextButton"
             android:layout_width="0dp"
@@ -126,7 +126,7 @@
             android:layout_marginBottom="28dp"
             android:text="다음"
             android:textSize="15sp"
-            android:background="@drawable/button_background"
+            android:background="@drawable/button_selector"
             android:textColor="@color/black"
             android:fontFamily="@font/pretendard_medium"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
