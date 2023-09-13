@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.ParentsSettingActivity"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="120dp"
+            android:text="우리 아이에 대해 알려주세요!"
+            android:fontFamily="@font/pretendard_bold"
+            android:textColor="@color/black"
+            android:textSize="26sp"/>
+
+        <TextView
+            android:id="@+id/nameTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleText"
+            android:layout_marginTop="30dp"
+            android:textSize="22sp"
+            android:fontFamily="@font/pretendard_medium"
+            android:textColor="@color/black"
+            android:text="이름"/>
+
+        <EditText
+            android:id="@+id/nameText"
+            android:layout_width="0dp"
+            android:layout_height="53dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nameTitle"
+            android:layout_marginTop="10dp"
+            android:textSize="17sp"
+            android:paddingStart="18dp"
+            android:hint="우리 아이의 이름을 적어주세요"
+            android:fontFamily="@font/pretendard_medium"
+            android:background="@drawable/gender_button_selector"/>
+
+        <TextView
+            android:id="@+id/birthTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nameText"
+            android:layout_marginTop="32dp"
+            android:textSize="22sp"
+            android:fontFamily="@font/pretendard_medium"
+            android:textColor="@color/black"
+            android:text="생년월일"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/birthButton"
+            android:layout_width="0dp"
+            android:layout_height="53dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/birthTitle"
+            android:layout_marginTop="10dp"
+            android:paddingStart="18dp"
+            android:hint="우리 아이의 생년월일을 선택해주세요"
+            android:textSize="17sp"
+            android:drawableLeft="@drawable/ic_calendar"
+            android:outlineProvider="none"
+            android:paddingEnd="15dp"
+            android:gravity="center"
+            android:fontFamily="@font/pretendard_medium"
+            android:background="@drawable/gender_button_selector"/>
+
+        <TextView
+            android:id="@+id/genderTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/birthButton"
+            android:layout_marginTop="32dp"
+            android:textSize="22sp"
+            android:fontFamily="@font/pretendard_medium"
+            android:textColor="@color/black"
+            android:text="성별"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/maleButton"
+            android:layout_width="152dp"
+            android:layout_height="53dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/genderTitle"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/gender_button_selector"
+            android:fontFamily="@font/pretendard_medium"
+            android:outlineProvider="none"
+            android:paddingEnd="35dp"
+            android:drawableLeft="@drawable/ic_male"
+            android:text="남자 아이"
+            android:textSize="15sp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/femaleButton"
+            android:layout_width="152dp"
+            android:layout_height="53dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/genderTitle"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/gender_button_selector"
+            android:fontFamily="@font/pretendard_medium"
+            android:outlineProvider="none"
+            android:drawableLeft="@drawable/ic_female"
+            android:paddingEnd="35dp"
+            android:text="여자 아이"
+            android:textSize="15sp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/nextButton"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="28dp"
+            android:fontFamily="@font/pretendard_medium"
+            android:text="시작하기"
+            android:textSize="16sp"
+            android:outlineProvider="none"
+            android:background="@drawable/button_selector"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
