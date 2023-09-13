@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.TestFragment"
+    tools:context=".fragment.Test2To18Fragment"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +22,7 @@
             android:id="@+id/text_questionNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1/18"
+            android:text="2/18"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,25 +39,29 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    
+
     <ImageView
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/progressbar1"
+        android:src="@drawable/progress2"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"/>
 
     <TextView
+        android:id="@+id/text_question"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="120dp"
         android:layout_marginTop="40dp"
         android:gravity="center"
-        android:text="우리 아이가 세세한 부분에서 \n꼼꼼하게 신경쓰는 것을 \n어려워 하나요?"
+        android:text="우리 아이가 손발을 가만히 \n
+두지 못하거나 의자에 앉아서도 \n몸을 꼼지락 거리나요?"
         android:textSize="24dp"/>
-    
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/answer0"
         android:layout_width="match_parent"
@@ -67,33 +74,33 @@
         app:strokeColor="#FFFFFF"
         app:cardCornerRadius="10dp">
 
-       <androidx.constraintlayout.widget.ConstraintLayout
-           android:id="@+id/answer0_color"
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:background="#FFFFFF"
-           >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/answer0_color"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            >
 
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="전혀 그렇지 않다"
-               android:textSize="18sp"
-               android:layout_marginLeft="20dp"
-               app:layout_constraintBottom_toBottomOf="parent"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="전혀 그렇지 않다"
+                android:textSize="18sp"
+                android:layout_marginLeft="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-           <ImageView
-               android:id="@+id/check_answer0"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:src="@drawable/uncheck"
-               android:layout_marginRight="21dp"
-               app:layout_constraintBottom_toBottomOf="parent"
-               app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintTop_toTopOf="parent" />
-       </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/check_answer0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/uncheck"
+                android:layout_marginRight="21dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
@@ -102,7 +109,7 @@
         android:layout_width="match_parent"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:layout_height="64dp"
         app:cardElevation="10dp"
         app:strokeWidth="0dp"
@@ -223,23 +230,63 @@
 
     </com.google.android.material.card.MaterialCardView>
 
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_marginTop="70dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/btn_back"
+        android:layout_width="152dp"
+        android:layout_height="64dp"
+        android:layout_marginLeft="20dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="#34C185"
+        app:strokeWidth="1dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/back_color"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이전"
+                android:textSize="18sp"
+                android:textColor="#34C185"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/btn_next"
-        android:layout_width="match_parent"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="70dp"
+        android:layout_width="152dp"
         android:layout_height="64dp"
-        app:strokeWidth="0dp"
-        app:cardCornerRadius="10dp">
+        app:cardCornerRadius="10dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeWidth="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/next_color"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#E8EBF0"
-            >
+            android:background="#E8EBF0">
 
             <TextView
 
@@ -257,5 +304,9 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </LinearLayout>
 </layout>
