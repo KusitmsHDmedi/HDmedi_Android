@@ -11,10 +11,8 @@ import com.example.hdmedi.R
 import com.example.hdmedi.databinding.ActivityOnBoardingBinding
 
 class OnBoardingActivity : BindingActivity<ActivityOnBoardingBinding>(R.layout.activity_on_boarding) {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         initText()
         initNextButton()
         setButton()
@@ -38,7 +36,7 @@ class OnBoardingActivity : BindingActivity<ActivityOnBoardingBinding>(R.layout.a
 
     private fun initNextButton(){
         binding.nextButton.setOnClickListener{
-            if(binding.nextButton.isActivated){
+            if(binding.parentButton.isSelected){
                 Intent(this, LoginActivity::class.java).apply {
                     startActivity(this)
                 }
