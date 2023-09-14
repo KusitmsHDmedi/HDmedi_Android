@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.CheckInfoActivity"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp">
+
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="검사를 진행할 아이의 정보가\n일치하나요?"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="121dp"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:fontFamily="@font/pretendard_bold"
+            android:lineSpacingExtra="7dp" />
+
+        <TextView
+            android:id="@+id/subTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleText"
+            android:layout_marginTop="5dp"
+            android:text="일치한다면 예 버튼을 눌러주세요"
+            android:textSize="18sp"
+            android:fontFamily="@font/pretendard_medium"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/infoView"
+            android:layout_width="0dp"
+            android:layout_height="217dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/subTitleText"
+            android:layout_marginTop="48dp"
+            android:backgroundTint="#00C67B"
+            app:cardCornerRadius="20dp">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="20dp">
+                <ImageView
+                    android:id="@+id/childIcon"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:src="@drawable/ic_child"/>
+
+                <TextView
+                    android:id="@+id/nameText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@+id/childIcon"
+                    app:layout_constraintTop_toTopOf="@+id/childIcon"
+                    app:layout_constraintBottom_toTopOf="@+id/detailText"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/pretendard_bold"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:text="금쪽이"/>
+                <TextView
+                    android:id="@+id/detailText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="금쪽이 엄마의 자녀"
+                    app:layout_constraintStart_toEndOf="@+id/childIcon"
+                    app:layout_constraintBottom_toBottomOf="@+id/childIcon"
+                    app:layout_constraintTop_toBottomOf="@+id/nameText"
+                    android:fontFamily="@font/pretendard_medium"
+                    android:textColor="@color/white"
+                    android:layout_marginStart="10dp"/>
+
+                <TextView
+                    android:id="@+id/genderTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/childIcon"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:text="성별"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginTop="30dp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/pretendard_medium"
+                    android:textStyle="bold"/>
+                
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="39dp"
+                    app:layout_constraintStart_toEndOf="@+id/genderTitle"
+                    app:layout_constraintTop_toTopOf="@+id/genderTitle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/genderTitle"
+                    android:layout_marginStart="18dp"
+                    android:background="@drawable/button_background"
+                    android:text="여자아이"
+                    android:textColor="#2BAE76"
+                    android:fontFamily="@font/pretendard_bold"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/birthTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/genderTitle"
+                    app:layout_constraintEnd_toEndOf="@id/genderTitle"
+                    android:text="생년월일"
+                    android:layout_marginTop="30dp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/pretendard_medium"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="39dp"
+                    app:layout_constraintStart_toEndOf="@+id/birthTitle"
+                    app:layout_constraintTop_toTopOf="@+id/birthTitle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/birthTitle"
+                    android:layout_marginStart="18dp"
+                    android:background="@drawable/button_background"
+                    android:fontFamily="@font/pretendard_bold"
+                    android:textColor="#2BAE76"
+                    android:text="2020-09-13"
+                    android:gravity="center"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/noButton"
+            android:layout_width="152dp"
+            android:layout_height="56dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="28dp"
+            android:outlineProvider="none"
+            android:text="아니요"
+            android:textSize="16sp"
+            android:fontFamily="@font/pretendard_medium"
+            android:background="@drawable/button_inactivated"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/yesButton"
+            android:layout_width="152dp"
+            android:layout_height="56dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="28dp"
+            android:outlineProvider="none"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/pretendard_medium"
+            android:text="예"
+            android:background="@drawable/button_activated"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

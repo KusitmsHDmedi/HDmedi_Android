@@ -40,6 +40,10 @@ class OnBoardingActivity : BindingActivity<ActivityOnBoardingBinding>(R.layout.a
                 Intent(this, LoginActivity::class.java).apply {
                     startActivity(this)
                 }
+            }else{
+                Intent(this, TeacherSettingActivity::class.java).apply {
+                    startActivity(this)
+                }
             }
         }
     }

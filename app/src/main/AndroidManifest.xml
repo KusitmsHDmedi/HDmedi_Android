@@ -15,9 +15,16 @@
         android:theme="@style/Theme.HDmedi"
         tools:targetApi="31">
         <activity
-            android:name=".activity.ParentsSettingActivity"
+            android:name=".activity.CheckInfoActivity"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".activity.TeacherSettingActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".activity.ParentsSettingActivity"
+            android:exported="true" />
         <activity
             android:name=".activity.SplashActivity"
             android:exported="true">
@@ -28,16 +35,13 @@
         </activity>
         <activity
             android:name=".activity.OnBoardingActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".activity.LoginActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".activity.MainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
     </application>
 
 </manifest>
