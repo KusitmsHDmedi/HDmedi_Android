@@ -3,12 +3,11 @@ package com.example.hdmedi.activity
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.util.Log
 import android.view.Gravity
 import android.view.ViewGroup
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
-import com.example.hdmedi.databinding.BirthPickerDialogBinding
+import com.example.hdmedi.databinding.DialogBirthPickerBinding
 import sh.tyy.wheelpicker.DatePickerView
 import java.util.Calendar
 import java.util.Date
@@ -18,7 +17,7 @@ interface PostDialogData {
 }
 
 class BirthPickerDialog(private val context: AppCompatActivity) {
-    private val binding = BirthPickerDialogBinding.inflate(context.layoutInflater)
+    private val binding = DialogBirthPickerBinding.inflate(context.layoutInflater)
     private val dialog = Dialog(context)
     private val calendar = Calendar.getInstance()
 
