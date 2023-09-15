@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="29dp"
+    android:layout_marginEnd="29dp"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    android:paddingBottom="27dp"
+    android:paddingTop="27dp"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@drawable/dialog_background">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="지금 나가면 응답 내용이\n저장되지 않습니다.\n그래도 나가실 건가요?"
+        android:fontFamily="@font/pretendard_semibold"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textAlignment="center"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_activated"
+        android:text="예, 나갈래요"
+        android:fontFamily="@font/pretendard_semibold"
+        android:textColor="@color/white"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:text="아니요, 계속 진행할게요"
+        android:background="@drawable/exit_button_background"
+        android:fontFamily="@font/pretendard_semibold"
+        android:textColor="#00C67B"/>
+
+
+</LinearLayout>
