@@ -48,8 +48,10 @@
         android:layout_gravity="center"/>
 
     <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="120dp"
         android:layout_marginTop="40dp"
         android:gravity="center"
         android:text="우리 아이가 세세한 부분에서 \n꼼꼼하게 신경쓰는 것을 \n어려워 하나요?"

@@ -2,18 +2,24 @@ package com.example.hdmedi.fragment
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.example.hdmedi.R
 import com.example.hdmedi.databinding.FragmentTestBinding
+import com.example.hdmedi.resultViewModel
+import kotlin.math.log
 
 
 class TestFragment : Fragment() {
 
+    private lateinit var viewModel : resultViewModel
 
     private var isCheck = false
     private var _binding : FragmentTestBinding?= null
@@ -21,6 +27,7 @@ class TestFragment : Fragment() {
 
     private var questionScore = 0
 
+    private var answer1 = ""
     private var totalScore = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +42,16 @@ class TestFragment : Fragment() {
         val view = binding.root
 
 
+
+
+
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel = ViewModelProvider(this).get(resultViewModel::class.java)
         //나가기 클릭
         binding.textExit.setOnClickListener {
 
@@ -62,6 +79,7 @@ class TestFragment : Fragment() {
             binding.answer3Color.setBackgroundColor(Color.parseColor("#ffffff"))
 
             questionScore = 0
+            answer1 = "전혀 그렇지 않다"
             isCheck = true
 
             if (isCheck == true) {
@@ -88,6 +106,7 @@ class TestFragment : Fragment() {
             binding.answer3Color.setBackgroundColor(Color.parseColor("#ffffff"))
 
             questionScore = 1
+            answer1 = "가끔 그렇다"
             isCheck = true
 
             if (isCheck == true) {
@@ -114,6 +133,7 @@ class TestFragment : Fragment() {
             binding.answer3Color.setBackgroundColor(Color.parseColor("#ffffff"))
 
             questionScore = 2
+            answer1 = "자주 그렇다"
             isCheck = true
 
             if (isCheck == true) {
@@ -140,6 +160,7 @@ class TestFragment : Fragment() {
             binding.answer0Color.setBackgroundColor(Color.parseColor("#ffffff"))
 
             questionScore = 3
+            answer1 = "매우 자주 그렇다"
             isCheck = true
 
             if (isCheck == true) {
@@ -159,10 +180,29 @@ class TestFragment : Fragment() {
             if (isCheck == true) {
 
 
+                viewModel.addScore(questionScore)
+
+                viewModel.addArray(answer1)
+
+
+                Log.d("viewmodel1, ", "${viewModel.TotalScore.value},${viewModel.answerArrayList.value}")
+
                 totalScore += questionScore
 
-                setFragmentResult("totalScore", bundleOf("bundleKey" to totalScore))
+
+                val bundle = Bundle()
+                bundle.putInt("score1", totalScore)
+                bundle.putString("answer1", answer1)
+
+
+
+                Log.d("answer1" , answer1.toString())
+//                setFragmentResult("totalScore0", bundleOf("bundleKey" to totalScore,"bundleKey1" to answer1))
+//                setFragmentResult("answer1", bundleOf("bundleKey" to answer1 ))
                 val test2To18Fragment = Test2To18Fragment()
+                test2To18Fragment.arguments = bundle
+
+
                 fragmentManager?.beginTransaction()?.apply {
                     replace(R.id.frameLayout,test2To18Fragment)
                     addToBackStack(null)
@@ -172,9 +212,6 @@ class TestFragment : Fragment() {
             }
 
         }
-
-
-        return view
     }
 
 
