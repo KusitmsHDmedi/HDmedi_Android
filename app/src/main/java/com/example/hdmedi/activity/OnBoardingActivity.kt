@@ -10,7 +10,7 @@ import android.text.style.RelativeSizeSpan
 import com.example.hdmedi.R
 import com.example.hdmedi.databinding.ActivityOnBoardingBinding
 
-class OnBoardingActivity : BindingActivity<ActivityOnBoardingBinding>(R.layout.activity_on_boarding) {
+class OnBoardingActivity : BaseActivity<ActivityOnBoardingBinding>(R.layout.activity_on_boarding) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initText()
