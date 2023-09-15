@@ -35,6 +35,8 @@ class RequestResultParentActivity : BaseActivity<ActivityRequestResultParentBind
                     val dialog = RequestDialog(this@RequestResultParentActivity)
                     dialog.setDialogListener(this@RequestResultParentActivity)
                     dialog.initDialog()
+                }else{
+                    Toast.makeText(this@RequestResultParentActivity, "모든 정보를 입력해주세요", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -72,18 +74,15 @@ class RequestResultParentActivity : BaseActivity<ActivityRequestResultParentBind
     }
 
     private fun sendMessage(phoneNumber: String, message: String) {
-        if(binding.sendButton.isActivated){
-            val smsManager = SmsManager.getDefault()
-            val sentIntent = Intent("SMS_SENT")
-            val deliveredIntent = Intent("SMS_DELIVERED")
+        val smsManager = SmsManager.getDefault()
+        val sentIntent = Intent("SMS_SENT")
+        val deliveredIntent = Intent("SMS_DELIVERED")
 
-            val sentPI = PendingIntent.getBroadcast(this, 0, sentIntent, PendingIntent.FLAG_IMMUTABLE)
-            val deliveredPI = PendingIntent.getBroadcast(this, 0, deliveredIntent,
-                PendingIntent.FLAG_IMMUTABLE)
-
-            smsManager.sendTextMessage(phoneNumber, null, message, sentPI, deliveredPI)
-        }else{
-            Toast.makeText(this, "모든 정보를 입력해주세요", Toast.LENGTH_SHORT).show()
+        val sentPI = PendingIntent.getBroadcast(this, 0, sentIntent, PendingIntent.FLAG_IMMUTABLE)
+        val deliveredPI = PendingIntent.getBroadcast(this, 0, deliveredIntent, PendingIntent.FLAG_IMMUTABLE)
+        smsManager.sendTextMessage(phoneNumber, null, message, sentPI, deliveredPI)
+        Intent(this, SendResultActivity::class.java).apply {
+            startActivity(this)
         }
     }
 

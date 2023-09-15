@@ -22,8 +22,7 @@
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="20sp"
-            android:fontFamily="@font/pretendard_medium"
-            android:textStyle="bold"/>
+            android:fontFamily="@font/pretendard_semibold"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/noButton"
@@ -37,6 +36,7 @@
             android:layout_marginEnd="13dp"
             android:background="@drawable/no_button_background"
             android:text="아니요"
+            android:fontFamily="@font/pretendard_semibold"
             android:textColor="#FF4D4D"/>
 
         <androidx.appcompat.widget.AppCompatButton
@@ -51,6 +51,7 @@
             android:background="@drawable/button_background"
             android:backgroundTint="#00C67B"
             android:text="예"
+            android:fontFamily="@font/pretendard_semibold"
             android:textColor="@color/white"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
