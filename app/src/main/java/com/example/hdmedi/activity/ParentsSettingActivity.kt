@@ -7,7 +7,7 @@ import android.view.inputmethod.InputMethodManager
 import com.example.hdmedi.R
 import com.example.hdmedi.databinding.ActivityParentsSettingBinding
 
-class ParentsSettingActivity : BindingActivity<ActivityParentsSettingBinding>(R.layout.activity_parents_setting), PostDialogData {
+class ParentsSettingActivity : BaseActivity<ActivityParentsSettingBinding>(R.layout.activity_parents_setting), PostDialogData {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initGenderButton()
@@ -60,6 +60,7 @@ class ParentsSettingActivity : BindingActivity<ActivityParentsSettingBinding>(R.
                 checkNextButton()
             }else{
                 view.isSelected = b
+                checkNextButton()
             }
         }
     }

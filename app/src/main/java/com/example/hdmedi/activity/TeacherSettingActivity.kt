@@ -2,7 +2,6 @@ package com.example.hdmedi.activity
 
 import android.graphics.Color
 import android.graphics.Typeface
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.text.Spanned
@@ -14,7 +13,7 @@ import android.view.inputmethod.InputMethodManager
 import com.example.hdmedi.R
 import com.example.hdmedi.databinding.ActivityTeacherSettingBinding
 
-class TeacherSettingActivity : BindingActivity<ActivityTeacherSettingBinding>(R.layout.activity_teacher_setting) {
+class TeacherSettingActivity : BaseActivity<ActivityTeacherSettingBinding>(R.layout.activity_teacher_setting) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initTitleText()
