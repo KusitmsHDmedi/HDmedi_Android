@@ -31,7 +31,7 @@ class TeacherSettingActivity : BaseActivity<ActivityTeacherSettingBinding>(R.lay
             }else{
                 view.isSelected = b
                 binding.nextButton.isActivated = false
-                binding.nextButton.setTextColor(Color.BLACK)
+                binding.nextButton.setTextColor(getColor(R.color.gray700))
             }
         }
     }
