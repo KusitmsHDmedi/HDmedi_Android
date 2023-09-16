@@ -18,6 +18,13 @@ class TeacherSettingActivity : BaseActivity<ActivityTeacherSettingBinding>(R.lay
         super.onCreate(savedInstanceState)
         initTitleText()
         initEditText()
+        initBackButton()
+    }
+
+    private fun initBackButton(){
+       binding.backButton.setOnClickListener {
+           finish()
+       }
     }
 
     private fun initEditText(){

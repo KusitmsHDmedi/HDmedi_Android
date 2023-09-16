@@ -14,10 +14,8 @@ class CheckInfoActivity : BaseActivity<ActivityCheckInfoBinding>(R.layout.activi
         super.onCreate(savedInstanceState)
         initTitleText()
 
-
         //yes btn
         binding.yesButton.setOnClickListener {
-
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
