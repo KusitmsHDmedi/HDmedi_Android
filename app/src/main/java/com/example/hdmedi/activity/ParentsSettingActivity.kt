@@ -46,11 +46,14 @@ class ParentsSettingActivity : BaseActivity<ActivityParentsSettingBinding>(R.lay
             //sharedPreference 이름,생일,성별 저장
 
             if(binding.maleButton.isSelected) {
+
                 MyApplication.preferences.setString("gender", "man")
             } else if (binding.femaleButton.isSelected) {
                 MyApplication.preferences.setString("gender", "woman")
-
             }
+
+
+             
             MyApplication.preferences.setString("childrenName", childrenName)
 
             MyApplication.preferences.setString("birthday",birthday )

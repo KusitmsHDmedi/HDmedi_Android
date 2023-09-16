@@ -17,7 +17,7 @@ class ResultAdapter(private var result : ArrayList<resultData>) : RecyclerView.A
 
 
         init{
-            result_question = view.findViewById(R.id.rv_item_question)
+            result_question = view.findViewById(R.id.questionText)
             result_answer = view.findViewById(R.id.rv_item_answer)
 
 

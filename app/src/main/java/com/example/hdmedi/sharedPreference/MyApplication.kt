@@ -11,7 +11,5 @@ class MyApplication : Application() {
     override fun onCreate() {
         preferences = PreferenceUtil(applicationContext)
         super.onCreate()
-
-
     }
 }

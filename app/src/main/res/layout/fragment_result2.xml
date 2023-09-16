@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-
-
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,9 +7,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.Result2Fragment"
     android:orientation="vertical">
-
-    <!-- TODO: Update blank fragment layout -->
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
@@ -22,14 +16,15 @@
 
         <ImageView
             android:id="@+id/btn_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/uncheck"
+            android:layout_width="18dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_back"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/exitButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="나가기"
@@ -39,12 +34,13 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     <TextView
+        android:id="@+id/titleText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="금쪽이의 \nADHD 자가진단 점수"
+        android:fontFamily="@font/pretendard_bold"
+        android:textColor="#121213"
         android:textSize="24sp"
         android:gravity="center"/>
 <LinearLayout
@@ -58,16 +54,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="34"
+        android:fontFamily="@font/pretendard_semibold"
         android:textColor="#34C185"
         android:textSize="68sp"/>
 
     <TextView
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:text="점"
-        android:layout_marginLeft="5dp"/>
+        android:layout_marginLeft="5dp"
+        android:fontFamily="@font/pretendard_semibold"
+        android:textColor="@color/black"/>
 
 
 </LinearLayout>
@@ -87,13 +85,16 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/condition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="19점 이상일 경우"
         android:textSize="24dp"
         android:textStyle="bold"
         android:layout_gravity="center"
-        android:layout_marginTop="25dp"/>
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/pretendard_semibold"
+        android:textColor="@color/black"/>
     <TextView
         android:id="@+id/text_result"
         android:layout_marginLeft="20dp"
@@ -101,9 +102,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="25dp"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:layout_marginTop="20dp"
-        android:text="주의력결핍 및 과잉행동 장애일 가능성이 있습니다. 주의력 결핍 과잉장애 문제는 성장하면서 자연스럽게 좋아질 수도 있으나 많은 경우 학습이나 또래 혹은 형제들과의 관계에서 다양한 문제가 발생할 소지가 있으므로 정확한 진단을 위해 전문가와 상담해 보는 것이 좋습니다."/>
+        android:text="주의력결핍 및 과잉행동 장애일 가능성이 있습니다. 주의력 결핍 과잉장애 문제는 성장하면서 자연스럽게 좋아질 수도 있으나 많은 경우 학습이나 또래 혹은 형제들과의 관계에서 다양한 문제가 발생할 소지가 있으므로 정확한 진단을 위해 전문가와 상담해 보는 것이 좋습니다."
+        android:lineSpacingExtra="5dp"
+        android:fontFamily="@font/pretendard_medium"/>
 </LinearLayout>
 
 
@@ -122,11 +125,11 @@
         app:cardCornerRadius="10dp"
         app:strokeWidth="0dp"
         android:backgroundTint="#00C67B">
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="선생님께 자가진단 요청하기"
+            android:fontFamily="@font/pretendard_semibold"
             android:layout_gravity="center"
             android:textColor="#FFFFFF"
             android:textSize="16sp"/>
@@ -151,10 +154,8 @@
             android:text="ADHD 관련 정보 보기"
             android:layout_gravity="center"
             android:textColor="#00C67B"
+            android:fontFamily="@font/pretendard_semibold"
             android:textSize="16sp"/>
-
     </com.google.android.material.card.MaterialCardView>
-
 </LinearLayout>
-
 </layout>
