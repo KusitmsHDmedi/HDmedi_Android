@@ -3,6 +3,7 @@ package com.example.hdmedi.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.hdmedi.R
+
 import com.example.hdmedi.fragment.TestFragment
 import com.example.hdmedi.fragment.TestStartFragment
 
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         transaction.replace(R.id.frameLayout, TestStartFragment)
         transaction.addToBackStack(null)
         transaction.commit()
+
     }
 
 }

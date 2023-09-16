@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.OnBoardingActivity">
+
+        <ImageView
+            android:layout_width="145dp"
+            android:layout_height="140dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ic_circle1"/>
+        
+        <ImageView
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:src="@drawable/ic_circle2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="140dp"/>
+
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="160dp"
+            android:text="반가워요! 아이약에 방문한 \n여러분은 누구신가요?"
+            android:gravity="center"
+            android:fontFamily="@font/pretendard_medium"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/parentCardView"
+            android:layout_width="0dp"
+            android:layout_height="85dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleText"
+            android:layout_marginTop="48dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:cardElevation="6dp"
+            app:cardCornerRadius="20dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/parentButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:padding="20dp"
+                android:clickable="true"
+                android:background="@drawable/cardview_selector">
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/ic_parent"/>
+                <TextView
+                    android:id="@+id/parentText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="아이의 부모 입니다"
+                    android:textSize="17sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/pretendard_semibold"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="85dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/parentCardView"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:cardElevation="6dp"
+            app:cardCornerRadius="20dp"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:id="@+id/teacherButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:background="@drawable/cardview_selector"
+                android:clickable="true"
+                android:padding="20dp">
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/ic_teacher"
+                    android:adjustViewBounds="true" />
+                <TextView
+                    android:id="@+id/teacherText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="아이의 선생님 입니다"
+                    android:textSize="17sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/pretendard_semibold"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/nextButton"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="28dp"
+            android:text="다음"
+            android:textSize="15sp"
+            android:background="@drawable/button_selector"
+            android:textColor="@color/black"
+            android:fontFamily="@font/pretendard_medium"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

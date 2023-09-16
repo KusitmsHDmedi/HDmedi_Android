@@ -31,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
                     val naverAccessToken = NaverIdLoginSDK.getAccessToken()
                     Log.e("login", "naverAccessToken : $naverAccessToken")
 
-                    Intent(this@LoginActivity, MainActivity::class.java).apply {
+                    Intent(this@LoginActivity, ParentsSettingActivity::class.java).apply {
                         startActivity(this)
                     }
                 }

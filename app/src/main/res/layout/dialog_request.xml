@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="29dp"
+        android:layout_marginEnd="29dp"
+        android:paddingTop="31dp"
+        android:paddingBottom="31dp"
+        android:paddingStart="23dp"
+        android:paddingEnd="23dp"
+        android:background="@drawable/request_dialog_background"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="금쪽이의 자가진단을\n 선생님께 요청시겠습니까?"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:fontFamily="@font/pretendard_semibold"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/noButton"
+            android:layout_width="121dp"
+            android:layout_height="45dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/yesButton"
+            app:layout_constraintTop_toBottomOf="@id/titleText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="13dp"
+            android:background="@drawable/no_button_background"
+            android:text="아니요"
+            android:fontFamily="@font/pretendard_semibold"
+            android:textColor="#FF4D4D"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/yesButton"
+            android:layout_width="121dp"
+            android:layout_height="45dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/noButton"
+            app:layout_constraintTop_toBottomOf="@id/titleText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/button_background"
+            android:backgroundTint="#00C67B"
+            android:text="예"
+            android:fontFamily="@font/pretendard_semibold"
+            android:textColor="@color/white"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
