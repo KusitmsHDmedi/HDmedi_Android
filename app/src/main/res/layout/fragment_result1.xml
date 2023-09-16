@@ -46,6 +46,7 @@
         android:layout_height="40dp"
         android:backgroundTint="#00C67B"
         app:strokeWidth="0dp"
+        app:cardCornerRadius="6dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleText"
         android:layout_marginTop="37dp"
@@ -95,6 +96,5 @@
         android:fontFamily="@font/pretendard_semibold"
         android:textColor="@color/white"
         android:textSize="16sp"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
