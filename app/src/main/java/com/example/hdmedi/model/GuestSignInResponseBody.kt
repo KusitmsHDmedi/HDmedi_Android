@@ -1,6 +1,6 @@
 package com.example.hdmedi.model
 
-data class(
+data class GuestSignInResponseBody(
 
     val status: Int,
     val message: String,
