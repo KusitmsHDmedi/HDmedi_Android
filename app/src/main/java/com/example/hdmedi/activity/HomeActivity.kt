@@ -1,5 +1,6 @@
 package com.example.hdmedi.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,11 +18,12 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
         val birth = MyApplication.preferences.getString("birth", "")
         val gender = MyApplication.preferences.getString("gender", "")
 
-        binding.nameText.setText(name)
-        binding.birth.setText(birth)
-        binding.gender.setText(gender)
-        binding.detailText.setText("${name} 엄마의 자녀")
+        initGenderImage(gender)
 
+        binding.nameText.text = name
+        binding.birth.text = birth
+        binding.gender.text = gender
+        binding.detailText.text = "${name} 엄마의 자녀"
 
         //자가진단 받으러 가기
         binding.runTestButton.setOnClickListener {
@@ -31,12 +33,17 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
 
         //이전 자가진단 확인
         binding.checkResultButton.setOnClickListener {
-
             val intent = Intent(this, CheckResultActivity::class.java)
             startActivity(intent)
-
         }
+    }
 
-
+    @SuppressLint("UseCompatLoadingForDrawables")
+    private fun initGenderImage(gender: String){
+        if(gender=="여자 아이"){
+            binding.childIcon.setBackgroundDrawable(getDrawable(R.drawable.ic_girl))
+        }else if(gender=="남자 아이"){
+            binding.childIcon.setBackgroundDrawable(getDrawable(R.drawable.ic_child))
+        }
     }
 }
