@@ -42,46 +42,49 @@ class LoginActivity : AppCompatActivity() {
             NidOAuthLogin().callProfileApi(object : NidProfileCallback<NidProfileResponse> {
                 override fun onSuccess(result: NidProfileResponse) {
                     val naverAccessToken = NaverIdLoginSDK.getAccessToken()
+
                     Log.e("login", "naverAccessToken : $naverAccessToken")
 
                     val userName = result.profile!!.name.toString()
                     MyApplication.preferences.setString("userName", userName)
+                    MyApplication.preferences.setString("accessToken", naverAccessToken!!)
 
-                    val naverToken = "Bearer $naverAccessToken"
-
-                    try{
-                        APIS.postNaverToken(naverToken, SignInRequestBody("naver")).enqueue(
-                            object : Callback<SignInResponseBody> {
-
-                                override fun onResponse(call: Call<SignInResponseBody>, response: Response<SignInResponseBody>) {
-                                    if (response.isSuccessful) {
-
-                                        val accessToken = response.body()!!.data.accessToken
-                                        val userId = response.body()!!.data.userId
-
-                                        MyApplication.preferences.setString("accessToken", accessToken)
-                                        MyApplication.preferences.setString("userId", userId.toString())
-
-
-                                        Log.d("accessToken", accessToken)
-
-                                        //화면 이동
-                                        Intent(this@LoginActivity, ParentsSettingActivity::class.java).apply {
-                                            startActivity(this)
-                                        }
-
-                                            } else {
-                                        Log.d("SignInResponseBody Response : ", " fail 1 , ${response.message()}")
-                                          }
-                                }
-
-                                override fun onFailure(call: Call<SignInResponseBody>, t: Throwable) {
-                                    Log.d("SignInResponseBody Response : ", " fail 2 , ${t.message.toString()}")
-                                }
-                            })
-                    } catch (e:Exception) {
-                        Log.d("SignInResponseBody response : ", " fail 3 , ${e.message}")
+                    //화면 이동
+                    Intent(this@LoginActivity, ParentsSettingActivity::class.java).apply {
+                        startActivity(this)
                     }
+
+
+//                    try{
+//                        APIS.postNaverToken(naverToken, SignInRequestBody("naver")).enqueue(
+//                            object : Callback<SignInResponseBody> {
+//
+//                                override fun onResponse(call: Call<SignInResponseBody>, response: Response<SignInResponseBody>) {
+//                                    if (response.isSuccessful) {
+//
+//                                        val accessToken = response.body()!!.data.accessToken
+//                                        val userId = response.body()!!.data.userId
+//
+//                                        MyApplication.preferences.setString("accessToken", accessToken)
+//                                        MyApplication.preferences.setString("userId", userId.toString())
+//
+//
+//                                        Log.d("accessToken", accessToken)
+//
+
+//
+//                                            } else {
+//                                        Log.d("SignInResponseBody Response : ", " fail 1 , ${response.message()}")
+//                                          }
+//                                }
+//
+//                                override fun onFailure(call: Call<SignInResponseBody>, t: Throwable) {
+//                                    Log.d("SignInResponseBody Response : ", " fail 2 , ${t.message.toString()}")
+//                                }
+//                            })
+//                    } catch (e:Exception) {
+//                        Log.d("SignInResponseBody response : ", " fail 3 , ${e.message}")
+//                    }
 
 
                 }

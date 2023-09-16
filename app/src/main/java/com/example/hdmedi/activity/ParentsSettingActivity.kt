@@ -46,9 +46,9 @@ class ParentsSettingActivity : BaseActivity<ActivityParentsSettingBinding>(R.lay
             //sharedPreference 이름,생일,성별 저장
 
             if(binding.maleButton.isSelected) {
-                MyApplication.preferences.setString("gender", "남자아이")
+                MyApplication.preferences.setString("gender", "man")
             } else if (binding.femaleButton.isSelected) {
-                MyApplication.preferences.setString("gender", "여자아이")
+                MyApplication.preferences.setString("gender", "woman")
 
             }
             MyApplication.preferences.setString("childrenName", childrenName)
@@ -71,6 +71,11 @@ Log.d("accessToken2",accessToken)
 
                         override fun onResponse(call: Call<SignUpResponseBody>, response: Response<SignUpResponseBody>) {
                             if (response.isSuccessful) {
+
+
+                                val accessToken = response.body()!!.data.accessToken
+                                MyApplication.preferences.setString("accessToken",accessToken )
+
 
 
                                 val intent = Intent(baseContext, HomeActivity::class.java)
