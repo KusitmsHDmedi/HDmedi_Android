@@ -1,5 +1,6 @@
 package com.example.hdmedi.fragment
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -19,6 +20,8 @@ import com.example.hdmedi.databinding.FragmentResult1Binding
 import com.example.hdmedi.databinding.FragmentTest2To18Binding
 import com.example.hdmedi.model.resultData
 import com.example.hdmedi.resultViewModel
+import com.example.hdmedi.sharedPreference.MyApplication
+import com.google.android.material.card.MaterialCardView
 
 
 class Result1Fragment : Fragment() {
@@ -60,6 +63,24 @@ class Result1Fragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+
+        //교사인지 학부모인지 판단해서 색 결정
+        if(MyApplication.preferences.getString("who","")=="parent") {
+
+            binding.answerBack.setBackgroundColor(Color.parseColor("#00C67B"))
+            binding.answerText.setTextColor(Color.parseColor("#FFFFFF"))
+
+
+
+
+
+        } else {
+
+            binding.answerBack.setBackgroundColor(Color.parseColor("#FFE459"))
+            binding.answerText.setTextColor(Color.parseColor("#000000"))
+
+
+        }
 
 
 

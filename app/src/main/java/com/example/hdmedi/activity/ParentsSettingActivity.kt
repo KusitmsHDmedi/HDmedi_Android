@@ -7,6 +7,7 @@ import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import com.example.hdmedi.R
 import com.example.hdmedi.databinding.ActivityParentsSettingBinding
+import com.example.hdmedi.sharedPreference.MyApplication
 
 class ParentsSettingActivity : BaseActivity<ActivityParentsSettingBinding>(R.layout.activity_parents_setting), PostDialogData {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +25,11 @@ class ParentsSettingActivity : BaseActivity<ActivityParentsSettingBinding>(R.lay
         binding.nextButton.setOnClickListener{
 
         if(binding.nextButton.isActivated){
+
+            val name = binding.nameText.text.toString()
+
+            //sharedPreference 이름 저장
+            MyApplication.preferences.setString("name", name)
 
                 val intent = Intent(this, MainActivity::class.java)
 

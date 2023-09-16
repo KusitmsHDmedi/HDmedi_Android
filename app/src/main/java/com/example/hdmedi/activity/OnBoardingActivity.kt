@@ -9,6 +9,7 @@ import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
 import com.example.hdmedi.R
 import com.example.hdmedi.databinding.ActivityOnBoardingBinding
+import com.example.hdmedi.sharedPreference.MyApplication
 
 class OnBoardingActivity : BaseActivity<ActivityOnBoardingBinding>(R.layout.activity_on_boarding) {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,10 +38,17 @@ class OnBoardingActivity : BaseActivity<ActivityOnBoardingBinding>(R.layout.acti
     private fun initNextButton(){
         binding.nextButton.setOnClickListener{
             if(binding.parentButton.isSelected){
+
+
+                //sharedPreference 저장
+                MyApplication.preferences.setString("who","parent")
                 Intent(this, LoginActivity::class.java).apply {
                     startActivity(this)
                 }
             }else{
+
+                //sharedPreference 저장
+                MyApplication.preferences.setString("who","teacher")
                 Intent(this, TeacherSettingActivity::class.java).apply {
                     startActivity(this)
                 }
