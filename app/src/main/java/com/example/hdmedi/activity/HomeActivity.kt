@@ -32,6 +32,9 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
         //이전 자가진단 확인
         binding.checkResultButton.setOnClickListener {
 
+            val intent = Intent(this, CheckResultActivity::class.java)
+            startActivity(intent)
+
         }
 
 
