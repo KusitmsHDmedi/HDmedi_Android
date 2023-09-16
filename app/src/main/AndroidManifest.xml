@@ -52,7 +52,7 @@
             android:name=".activity.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activity.HomeActivity"
             android:exported="true" />
     </application>
 
