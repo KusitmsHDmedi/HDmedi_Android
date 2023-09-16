@@ -1,108 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.Result1Fragment"
-    android:orientation="vertical">
-
-
+    tools:context=".fragment.Result1Fragment">
     <TextView
+        android:id="@+id/titleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:text="검사문항 전체 보기"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:textSize="24dp"/>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:orientation="horizontal"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView"
-            android:layout_width="200dp"
-            android:layout_height="40dp"
-            app:cardCornerRadius="6dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:backgroundTint="#000000">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="검사 질문"
-                android:textSize="14dp"
-                android:layout_gravity="center"
-                android:textColor="#FFFFFF"/>
+        android:layout_marginTop="57dp"
+        android:textSize="24sp"
+        android:fontFamily="@font/pretendard_bold"
+        android:textColor="@color/black"/>
 
 
-        </com.google.android.material.card.MaterialCardView>
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        app:cardCornerRadius="6dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleText"
+        android:layout_marginTop="37dp"
+        android:layout_marginStart="20dp"
+        android:backgroundTint="#000000">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="검사 질문"
+            android:textSize="14sp"
+            android:fontFamily="@font/pretendard_semibold"
+            android:layout_gravity="center"
+            android:textColor="#FFFFFF"/>
+    </com.google.android.material.card.MaterialCardView>
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/answer_back"
-            android:layout_width="112dp"
-            android:layout_height="40dp"
-            android:backgroundTint="#00C67B"
-            app:strokeWidth="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" >
-
-
-            <TextView
-                android:id="@+id/answer_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="답변"
-                android:textSize="14sp"
-                android:drawableLeft="@drawable/girl"
-                android:drawablePadding="10dp"
-                android:layout_gravity="center"
-                android:textColor="#FFFFFF"/>
-
-        </com.google.android.material.card.MaterialCardView>
-
-
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="112dp"
+        android:layout_height="40dp"
+        android:backgroundTint="#00C67B"
+        app:strokeWidth="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleText"
+        android:layout_marginTop="37dp"
+        android:layout_marginEnd="20dp">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="31dp"
+            android:src="@drawable/ic_parent"
+            android:layout_gravity="center_vertical"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="답변"
+            android:textSize="14sp"
+            android:fontFamily="@font/pretendard_semibold"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="31dp"
+            android:textColor="#FFFFFF"/>
+    </com.google.android.material.card.MaterialCardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_result"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView"
+        app:layout_constraintBottom_toTopOf="@id/btnNext"
+        app:circularflow_viewCenter="@drawable/ic_parent" />
     
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnNext"
+        android:layout_width="0dp"
         android:layout_height="56dp"
-        app:strokeWidth="0dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:backgroundTint="#00C67B"
-        app:cardCornerRadius="10dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="28dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/button_activated"
+        android:text="결과 보기"
+        android:fontFamily="@font/pretendard_semibold"
+        android:textColor="@color/white"
+        android:textSize="16sp"/>
 
-        <TextView
-            android:id="@+id/btn_next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="결과보기"
-            android:textSize="16dp"
-            android:layout_gravity="center"
-            android:textColor="#FFFFFF"/>
-
-
-
-    </com.google.android.material.card.MaterialCardView>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

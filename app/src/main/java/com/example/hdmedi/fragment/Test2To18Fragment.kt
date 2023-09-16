@@ -7,10 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.*
 import androidx.lifecycle.ViewModelProvider
 import com.example.hdmedi.R
+import com.example.hdmedi.activity.ExitDialog
 import com.example.hdmedi.databinding.FragmentTest2To18Binding
 import com.example.hdmedi.resultViewModel
 
@@ -136,17 +138,11 @@ class Test2To18Fragment : Fragment() {
 
         //나가기 클릭
         binding.textExit.setOnClickListener {
-
             //점수 초기화
             viewModel.viewModelscore =0
-
             //이동
-            val testStartFragment = TestStartFragment()
-            fragmentManager?.beginTransaction()?.apply {
-                replace(R.id.frameLayout, testStartFragment)
-                commit()
-            }
-
+            val dialog = ExitDialog(context as AppCompatActivity)
+            dialog.initDialog()
         }
 
         //전혀 그렇지 않다 클릭

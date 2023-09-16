@@ -7,20 +7,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.setFragmentResult
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.example.hdmedi.R
+import com.example.hdmedi.activity.ExitDialog
 import com.example.hdmedi.databinding.FragmentTestBinding
 import com.example.hdmedi.resultViewModel
-import kotlin.math.log
 
 
-class TestFragment : Fragment() {
-
-
+class TestFragment : Fragment(){
     private var isCheck = false
     private var _binding: FragmentTestBinding? = null
     private val binding get() = _binding!!
@@ -33,10 +28,6 @@ class TestFragment : Fragment() {
 
 
     private var totalScore1 = 0
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,27 +35,15 @@ class TestFragment : Fragment() {
     ): View? {
         _binding = FragmentTestBinding.inflate(inflater, container, false)
         val view = binding.root
-
-
-
-
-
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
         //나가기 클릭
         binding.textExit.setOnClickListener {
-
-            val testStartFragment = TestStartFragment()
-            fragmentManager?.beginTransaction()?.apply {
-                replace(R.id.frameLayout, testStartFragment)
-                commit()
-            }
-
+            val dialog = ExitDialog(context as AppCompatActivity)
+            dialog.initDialog()
         }
 
         //전혀 그렇지 않다 클릭
@@ -209,6 +188,4 @@ class TestFragment : Fragment() {
 
         }
     }
-
-
 }
