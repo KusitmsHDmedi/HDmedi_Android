@@ -3,7 +3,6 @@ package com.example.hdmedi.activity
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.util.Log
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import com.example.hdmedi.databinding.DialogRequestBinding
@@ -31,10 +30,10 @@ class RequestDialog(private val context: AppCompatActivity) {
         binding.noButton.setOnClickListener {
             dialog.dismiss()
         }
+
         binding.yesButton.setOnClickListener {
             dialogListener?.onYesButtonClickListener()
         }
         dialog.show()
-
     }
 }
