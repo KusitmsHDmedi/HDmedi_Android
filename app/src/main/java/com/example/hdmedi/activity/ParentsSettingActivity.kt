@@ -14,16 +14,21 @@ class ParentsSettingActivity : BaseActivity<ActivityParentsSettingBinding>(R.lay
         initGenderButton()
         initEditText()
         initBirthButton()
+
+
         initNextButton()
     }
 
     private fun initNextButton(){
+
+        binding.nextButton.setOnClickListener{
+
         if(binding.nextButton.isActivated){
 
-            val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
 
-            startActivity(intent)
-
+                startActivity(intent)
+            }
 
 
         }

@@ -137,6 +137,10 @@ class Test2To18Fragment : Fragment() {
         //나가기 클릭
         binding.textExit.setOnClickListener {
 
+            //점수 초기화
+            viewModel.viewModelscore =0
+
+            //이동
             val testStartFragment = TestStartFragment()
             fragmentManager?.beginTransaction()?.apply {
                 replace(R.id.frameLayout, testStartFragment)
@@ -361,7 +365,6 @@ class Test2To18Fragment : Fragment() {
                         replace(R.id.frameLayout, result1Fragment)
                         addToBackStack(null)
                         commit()
-                        Toast.makeText(requireContext(), "$totalScore", Toast.LENGTH_SHORT).show()
                     }
 
                     Log.d("status", "$questionNum  \n $questionScore  \n $answerArray  \n $totalScore" )
