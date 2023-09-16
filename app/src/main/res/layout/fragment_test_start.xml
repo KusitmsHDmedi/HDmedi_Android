@@ -7,22 +7,18 @@
     android:layout_height="match_parent"
     tools:context=".fragment.TestStartFragment"
     android:orientation="vertical">
-
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="146dp"
-        android:layout_marginTop="33dp"
-        >
-
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp">
         <TextView
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="조파랑님의 \nADHD 자가진단을 \n시작할까요?"
             android:textSize="28dp"
+            android:fontFamily="@font/pretendard_bold"
             android:textStyle="bold"/>
-
     </LinearLayout>
 
     <ImageView
@@ -51,6 +47,5 @@
         android:background="#ffffff"
         android:layout_marginTop="68dp"
         android:layout_gravity="center"/>
-
 </LinearLayout>
 </layout>
