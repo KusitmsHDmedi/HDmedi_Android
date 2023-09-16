@@ -46,8 +46,21 @@ class BirthPickerDialog(private val context: AppCompatActivity) {
             maxDate = Date()
             setDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
             setWheelListener(object : DatePickerView.Listener {
-                override fun didSelectData(year: Int, month: Int, day: Int) {
-                    binding.dateText.text = "${year}년 ${month+1}월 ${day}일"
+                override fun didSelectData(year: Int, month: Int, dayOfMonth: Int) {
+
+//                    binding.dateText.text = "${year}년 ${month+1}월 ${day}일"
+                    var realMonth = "${month+1}"
+                    var realDayOfMonth = "${dayOfMonth}"
+
+                    if(month+1<10) {
+                        realMonth ="0${month+1}"
+                    }
+                    if (dayOfMonth<10) {
+                        realDayOfMonth = "0$dayOfMonth"
+                    }
+
+                    val selectDate = "${year}-${realMonth}-${realDayOfMonth}"
+                    binding.dateText.setText(selectDate)
                 }
             })
         }

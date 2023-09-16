@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import com.example.hdmedi.R
+import com.example.hdmedi.model.SignInRequestBody
 import com.example.hdmedi.model.SignInResponseBody
 import com.example.hdmedi.retrofit.APIS
 import com.example.hdmedi.retrofit.RetrofitInstance
@@ -43,11 +44,13 @@ class LoginActivity : AppCompatActivity() {
                     val naverAccessToken = NaverIdLoginSDK.getAccessToken()
                     Log.e("login", "naverAccessToken : $naverAccessToken")
 
+                    val userName = result.profile!!.name.toString()
+                    MyApplication.preferences.setString("userName", userName)
 
                     val naverToken = "Bearer $naverAccessToken"
 
                     try{
-                        APIS.postNaverToken(naverToken).enqueue(
+                        APIS.postNaverToken(naverToken, SignInRequestBody("naver")).enqueue(
                             object : Callback<SignInResponseBody> {
 
                                 override fun onResponse(call: Call<SignInResponseBody>, response: Response<SignInResponseBody>) {
