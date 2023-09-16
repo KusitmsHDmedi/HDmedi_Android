@@ -2,6 +2,7 @@ package com.example.hdmedi.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -44,7 +45,8 @@ class Result2Fragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        val score = viewModel.viewModelscore
+        val score = viewModel.viewModelScoreList.sum()
+        Log.d("score",score.toString())
 
         binding.finalScore.setText(score.toString())
 
