@@ -51,6 +51,9 @@
             android:name=".activity.CheckInfoActivity"
             android:exported="true" />
         <activity
+            android:name=".activity.HomeActivity"
+            android:exported="true" />
+        <activity
             android:name=".activity.TeacherSettingActivity"
             android:exported="true" />
         <activity

@@ -28,10 +28,19 @@ class ParentsSettingActivity : BaseActivity<ActivityParentsSettingBinding>(R.lay
 
             val name = binding.nameText.text.toString()
 
-            //sharedPreference 이름 저장
+            val birth = binding.birthButton.text.toString()
+            //sharedPreference 이름,생일,성별 저장
+
+            if(binding.maleButton.isSelected) {
+                MyApplication.preferences.setString("gender", "남자아이")
+            } else if (binding.femaleButton.isSelected) {
+                MyApplication.preferences.setString("gender", "여자아이")
+
+            }
             MyApplication.preferences.setString("name", name)
 
-                val intent = Intent(this, MainActivity::class.java)
+            MyApplication.preferences.setString("birth",birth )
+                val intent = Intent(this, HomeActivity::class.java)
 
                 startActivity(intent)
             }
