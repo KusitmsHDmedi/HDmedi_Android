@@ -21,7 +21,6 @@ object RetrofitInstance {
     fun retrofitInstance(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(baseURL)
-            //.header("Authorization", "Bearer " + token)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
             .build()
