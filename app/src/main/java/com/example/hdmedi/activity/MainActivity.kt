@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
 
         //fragment 초기 화면
-        transaction.replace(R.id.frameLayout, TestStartFragment)
+        transaction.replace(R.id.mainFrameLayout, TestStartFragment)
         transaction.addToBackStack(null)
         transaction.commit()
 

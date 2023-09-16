@@ -1,5 +1,6 @@
 package com.example.hdmedi.activity
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.MotionEvent
@@ -18,6 +19,13 @@ class ParentsSettingActivity : BaseActivity<ActivityParentsSettingBinding>(R.lay
 
     private fun initNextButton(){
         if(binding.nextButton.isActivated){
+
+            val intent = Intent(this, MainActivity::class.java)
+
+            startActivity(intent)
+
+
+
         }
     }
 
