@@ -350,7 +350,7 @@ class Test2To18Fragment : Fragment() {
                     viewModel.addviewModelscore(questionScore)
 
                     //정답 저장
-
+                    viewModel.addviewModelScoreList(questionScore)
                     viewModel.addviewModelAnswerList(answer)
                     Log.d("viewModel", "${viewModel.viewModelAnswerList} " +
                             " \n ${viewModel.viewModelScoreList}")

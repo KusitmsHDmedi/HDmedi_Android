@@ -14,17 +14,26 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
 
 
         //정보 세팅
-        val name = MyApplication.preferences.getString("name", "")
-        val birth = MyApplication.preferences.getString("birth", "")
+        val name = MyApplication.preferences.getString("childrenName", "")
+        val birth = MyApplication.preferences.getString("birthday", "")
         val gender = MyApplication.preferences.getString("gender", "")
+        val parentName = MyApplication.preferences.getString("userName", "")
+
+
+        if(gender == "man") {
+            binding.gender.setText("남자아이")
+
+        } else if (gender == "woman") {
+            binding.gender.setText("여자아이")
+        }
+        binding.nameText.setText(name)
+        binding.birth.setText(birth)
+        binding.detailText.setText("${parentName}의 자녀")
 
         initGenderImage(gender)
 
-        binding.nameText.text = name
-        binding.birth.text = birth
-        binding.gender.text = gender
-        binding.detailText.text = "${name} 엄마의 자녀"
 
+      
         //자가진단 받으러 가기
         binding.runTestButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
@@ -40,9 +49,9 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
 
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun initGenderImage(gender: String){
-        if(gender=="여자 아이"){
+        if(gender=="woman"){
             binding.childIcon.setBackgroundDrawable(getDrawable(R.drawable.ic_girl))
-        }else if(gender=="남자 아이"){
+        }else if(gender=="man"){
             binding.childIcon.setBackgroundDrawable(getDrawable(R.drawable.ic_child))
         }
     }
