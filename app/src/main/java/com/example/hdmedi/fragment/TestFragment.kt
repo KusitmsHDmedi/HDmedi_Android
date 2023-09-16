@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -19,16 +20,19 @@ import kotlin.math.log
 
 class TestFragment : Fragment() {
 
-    private lateinit var viewModel : resultViewModel
 
     private var isCheck = false
-    private var _binding : FragmentTestBinding?= null
+    private var _binding: FragmentTestBinding? = null
     private val binding get() = _binding!!
 
     private var questionScore = 0
 
     private var answer1 = ""
-    private var totalScore = 0
+
+    private  val viewModel: resultViewModel by activityViewModels()
+
+
+    private var totalScore1 = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -38,7 +42,7 @@ class TestFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentTestBinding.inflate(inflater,container,false)
+        _binding = FragmentTestBinding.inflate(inflater, container, false)
         val view = binding.root
 
 
@@ -51,13 +55,13 @@ class TestFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(resultViewModel::class.java)
+
         //나가기 클릭
         binding.textExit.setOnClickListener {
 
             val testStartFragment = TestStartFragment()
             fragmentManager?.beginTransaction()?.apply {
-                replace(R.id.frameLayout,testStartFragment)
+                replace(R.id.frameLayout, testStartFragment)
                 commit()
             }
 
@@ -166,7 +170,6 @@ class TestFragment : Fragment() {
             if (isCheck == true) {
 
 
-
                 binding.btnNextColor.setTextColor(Color.parseColor("#FFFFFF"))
                 binding.nextColor.setBackgroundColor(Color.parseColor("#00C67B"))
 
@@ -180,31 +183,24 @@ class TestFragment : Fragment() {
             if (isCheck == true) {
 
 
-                viewModel.addScore(questionScore)
+//                totalScore1 += questionScore
 
-                viewModel.addArray(answer1)
-
-
-                Log.d("viewmodel1, ", "${viewModel.TotalScore.value},${viewModel.answerArrayList.value}")
-
-                totalScore += questionScore
-
-
-                val bundle = Bundle()
-                bundle.putInt("score1", totalScore)
-                bundle.putString("answer1", answer1)
-
-
-
-                Log.d("answer1" , answer1.toString())
-//                setFragmentResult("totalScore0", bundleOf("bundleKey" to totalScore,"bundleKey1" to answer1))
-//                setFragmentResult("answer1", bundleOf("bundleKey" to answer1 ))
+viewModel.addviewModelscore(questionScore)
+                viewModel.addviewModelAnswerList(answer1)
+                Log.d("viewModel", "${viewModel.viewModelAnswerList} " +
+                        " \n ${viewModel.viewModelscore}")
+                //데이터 넘기기 bundle
+//                val bundle = Bundle()
+//                bundle.putInt("totalScore1", totalScore1)
+//
+//                bundle.putString("answer1",answer1)
                 val test2To18Fragment = Test2To18Fragment()
-                test2To18Fragment.arguments = bundle
+
+//                test2To18Fragment.arguments = bundle
 
 
                 fragmentManager?.beginTransaction()?.apply {
-                    replace(R.id.frameLayout,test2To18Fragment)
+                    replace(R.id.frameLayout, test2To18Fragment)
                     addToBackStack(null)
                     commit()
                 }
