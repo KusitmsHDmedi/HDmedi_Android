@@ -180,7 +180,7 @@ class TestFragment : Fragment(){
 
                 fragmentManager?.beginTransaction()?.apply {
                     replace(R.id.frameLayout, test2To18Fragment)
-                    addToBackStack(null)
+
                     commit()
                 }
 

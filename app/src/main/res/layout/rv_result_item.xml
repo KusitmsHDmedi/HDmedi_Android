@@ -42,6 +42,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/rv_item_back"
             android:layout_width="112dp"
             android:layout_height="0dp"
             android:backgroundTint="#c4eadc"

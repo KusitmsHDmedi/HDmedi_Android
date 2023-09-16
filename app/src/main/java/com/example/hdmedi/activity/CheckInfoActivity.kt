@@ -1,5 +1,6 @@
 package com.example.hdmedi.activity
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.text.SpannableStringBuilder
@@ -12,6 +13,21 @@ class CheckInfoActivity : BaseActivity<ActivityCheckInfoBinding>(R.layout.activi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initTitleText()
+
+
+        //yes btn
+        binding.yesButton.setOnClickListener {
+
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+        //no btn
+        binding.noButton.setOnClickListener {
+
+            val intent = Intent(this, OnBoardingActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun initTitleText(){
