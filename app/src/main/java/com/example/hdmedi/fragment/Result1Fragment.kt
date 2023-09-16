@@ -14,67 +14,36 @@ import com.example.hdmedi.databinding.FragmentResult1Binding
 import com.example.hdmedi.model.resultData
 import com.example.hdmedi.resultViewModel
 import com.example.hdmedi.sharedPreference.MyApplication
-import com.google.android.material.card.MaterialCardView
-
 
 class Result1Fragment : Fragment() {
-
     private  val viewModel: resultViewModel by activityViewModels()
-
     private lateinit var resultAdapter: ResultAdapter
     private var _binding: FragmentResult1Binding? = null
     private val binding get() = _binding!!
-
-
     private var resultArray = ArrayList<resultData>()
-
-
     private var answerArrayList = mutableListOf<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
         _binding = FragmentResult1Binding.inflate(inflater,container,false)
         val view = binding.root
-
-
-
-
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-
         //교사인지 학부모인지 판단해서 색 결정
         if(MyApplication.preferences.getString("who","")=="parent") {
-
             binding.answerBack.setBackgroundColor(Color.parseColor("#00C67B"))
             binding.answerText.setTextColor(Color.parseColor("#FFFFFF"))
-
-
-
-
-
         } else {
-
             binding.answerBack.setBackgroundColor(Color.parseColor("#FFE459"))
             binding.answerText.setTextColor(Color.parseColor("#000000"))
-
-
         }
 
-
-
         answerArrayList = viewModel.viewModelAnswerList
-
-
-
         //데이터 넣기
         resultArray.add(resultData("1. 우리 아이가 세세한 부분에서 \n꼼꼼하게 신경쓰는 것을 \n어려워 하나요?","${answerArrayList.get(0)}"))
         resultArray.add(resultData("2. 우리 아이가 손발을 가만히 \n" +
