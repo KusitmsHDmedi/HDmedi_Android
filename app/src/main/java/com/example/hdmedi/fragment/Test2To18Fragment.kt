@@ -324,8 +324,7 @@ class Test2To18Fragment : Fragment() {
 
                     viewModel.addviewModelAnswerList(answer)
                     Log.d("viewModel", "${viewModel.viewModelAnswerList} " +
-                            " \n ${viewModel.viewModelscore} \n ${viewModel.addviewModelScoreList(questionScore)}")
-
+                            " \n ${viewModel.viewModelScoreList}")
                     ////
                     binding.checkAnswer3.setImageResource(R.drawable.uncheck)
                     binding.checkAnswer1.setImageResource(R.drawable.uncheck)
@@ -345,7 +344,6 @@ class Test2To18Fragment : Fragment() {
                     binding.nextColor.setBackgroundColor(Color.parseColor("#E8EBF0"))
 
 
-                    Log.d("status", "$questionNum  \n $questionScore  \n $answerArray  \n $totalScore" )
 
                 } else if (questionNum == 19) {
 
@@ -358,9 +356,8 @@ class Test2To18Fragment : Fragment() {
                     //정답 저장
 
                     viewModel.addviewModelAnswerList(answer)
-
                     Log.d("viewModel", "${viewModel.viewModelAnswerList} " +
-                            " \n ${viewModel.viewModelscore}")
+                            " \n ${viewModel.viewModelScoreList}")
                     //종료 페이지
 
                     val result1Fragment = Result1Fragment()
@@ -389,7 +386,8 @@ class Test2To18Fragment : Fragment() {
 
                 val testFragment = TestFragment()
 
-
+                Log.d("viewModel", "${viewModel.viewModelAnswerList} " +
+                        " \n ${viewModel.viewModelScoreList}")
 
                 fragmentManager?.beginTransaction()?.apply {
                     replace(R.id.frameLayout, testFragment)
