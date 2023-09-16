@@ -24,9 +24,9 @@
     <ImageView
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:layout_width="255dp"
-        android:layout_height="255dp"
-        android:src="@drawable/preimage"/>
+        android:layout_width="300dp"
+        android:layout_height="315dp"
+        android:src="@drawable/main"/>
 
     <TextView
         android:layout_gravity="center"
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/startbtn"
         android:background="#ffffff"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="20dp"
         android:layout_gravity="center"/>
 </LinearLayout>
 </layout>

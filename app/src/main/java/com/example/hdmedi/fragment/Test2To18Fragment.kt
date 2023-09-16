@@ -137,6 +137,10 @@ class Test2To18Fragment : Fragment() {
         //나가기 클릭
         binding.textExit.setOnClickListener {
 
+            //점수 초기화
+            viewModel.viewModelscore =0
+
+            //이동
             val testStartFragment = TestStartFragment()
             fragmentManager?.beginTransaction()?.apply {
                 replace(R.id.frameLayout, testStartFragment)
@@ -257,7 +261,9 @@ class Test2To18Fragment : Fragment() {
         binding.btnNext.setOnClickListener {
 
 
+
             if (isCheck == true) {
+
 
                 questionNum++
 
@@ -313,11 +319,12 @@ class Test2To18Fragment : Fragment() {
 
                     viewModel.addviewModelscore(questionScore)
 
+                    viewModel.addviewModelScoreList(questionScore)
                     //정답 저장
 
                     viewModel.addviewModelAnswerList(answer)
                     Log.d("viewModel", "${viewModel.viewModelAnswerList} " +
-                            " \n ${viewModel.viewModelscore}")
+                            " \n ${viewModel.viewModelscore} \n ${viewModel.addviewModelScoreList(questionScore)}")
 
                     ////
                     binding.checkAnswer3.setImageResource(R.drawable.uncheck)
@@ -332,7 +339,7 @@ class Test2To18Fragment : Fragment() {
                     binding.answer0Color.setBackgroundColor(Color.parseColor("#ffffff"))
 
 
-                    answerArray.add(answer)
+//                    answerArray.add(answer)
                     isCheck = false
                     binding.btnNextColor.setTextColor(Color.parseColor("#000000"))
                     binding.nextColor.setBackgroundColor(Color.parseColor("#E8EBF0"))
@@ -361,10 +368,8 @@ class Test2To18Fragment : Fragment() {
                         replace(R.id.frameLayout, result1Fragment)
                         addToBackStack(null)
                         commit()
-                        Toast.makeText(requireContext(), "$totalScore", Toast.LENGTH_SHORT).show()
                     }
 
-                    Log.d("status", "$questionNum  \n $questionScore  \n $answerArray  \n $totalScore" )
                 }
 
 
@@ -372,6 +377,97 @@ class Test2To18Fragment : Fragment() {
 
 
         }
+
+        //이전 버튼
+        binding.btnBack.setOnClickListener {
+
+            if(questionNum==2) {
+
+                //제거 로직
+                viewModel.viewModelAnswerList.removeLast()
+                viewModel.viewModelScoreList.removeLast()
+
+                val testFragment = TestFragment()
+
+
+
+                fragmentManager?.beginTransaction()?.apply {
+                    replace(R.id.frameLayout, testFragment)
+                    addToBackStack(null)
+                    commit()
+                }
+
+            } else {
+                //이전 번호
+                questionNum--
+
+                binding.textQuestionNum.setText("${questionNum}/18")
+
+                if(questionNum==2) {
+                    binding.progressBar.setImageResource(R.drawable.progress2)
+                } else if (questionNum == 3) {
+                    binding.progressBar.setImageResource(R.drawable.progress3)
+                } else if (questionNum == 4) {
+                    binding.progressBar.setImageResource(R.drawable.progress4)
+                } else if (questionNum == 5) {
+                    binding.progressBar.setImageResource(R.drawable.progress5)
+                } else if (questionNum == 6) {
+                    binding.progressBar.setImageResource(R.drawable.progress6)
+                } else if (questionNum == 7) {
+                    binding.progressBar.setImageResource(R.drawable.progress7)
+                } else if (questionNum == 8) {
+                    binding.progressBar.setImageResource(R.drawable.progress8)
+                } else if (questionNum == 9) {
+                    binding.progressBar.setImageResource(R.drawable.progress9)
+                } else if (questionNum == 10) {
+                    binding.progressBar.setImageResource(R.drawable.progress10)
+                } else if (questionNum == 11) {
+                    binding.progressBar.setImageResource(R.drawable.progress11)
+                } else if (questionNum == 12) {
+                    binding.progressBar.setImageResource(R.drawable.progress12)
+                } else if (questionNum == 13) {
+                    binding.progressBar.setImageResource(R.drawable.progress13)
+                } else if (questionNum == 14) {
+                    binding.progressBar.setImageResource(R.drawable.progress14)
+                } else if (questionNum == 15) {
+                    binding.progressBar.setImageResource(R.drawable.progress15)
+                } else if (questionNum == 16) {
+                    binding.progressBar.setImageResource(R.drawable.progress16)
+                } else if (questionNum == 17) {
+                    binding.progressBar.setImageResource(R.drawable.progress17)
+                } else if (questionNum == 18) {
+                    binding.progressBar.setImageResource(R.drawable.progress18)
+                }
+
+
+                //질문 변화
+                binding.textQuestion.setText(questionArray.get(questionNum - 2))
+
+                binding.checkAnswer3.setImageResource(R.drawable.uncheck)
+                binding.checkAnswer1.setImageResource(R.drawable.uncheck)
+                binding.checkAnswer2.setImageResource(R.drawable.uncheck)
+                binding.checkAnswer0.setImageResource(R.drawable.uncheck)
+
+
+                binding.answer3Color.setBackgroundColor(Color.parseColor("#ffffff"))
+                binding.answer1Color.setBackgroundColor(Color.parseColor("#ffffff"))
+                binding.answer2Color.setBackgroundColor(Color.parseColor("#ffffff"))
+                binding.answer0Color.setBackgroundColor(Color.parseColor("#ffffff"))
+
+
+                isCheck = false
+                binding.btnNextColor.setTextColor(Color.parseColor("#000000"))
+                binding.nextColor.setBackgroundColor(Color.parseColor("#E8EBF0"))
+
+
+                //제거 로직
+                viewModel.viewModelAnswerList.removeLast()
+                viewModel.viewModelScoreList.removeLast()
+                Log.d("viewModel", "${viewModel.viewModelAnswerList} " +
+                        " \n ${viewModel.viewModelScoreList}")
+            }
+            }
+
 
     }
 

@@ -22,24 +22,29 @@
 
         <activity
             android:name=".activity.SplashActivity"
-            android:exported="true"></activity>
-        <activity
-            android:name=".activity.LoginActivity"
-            android:exported="true"></activity>
-        <activity
-            android:name=".activity.MainActivity"
-            android:exported="true"></activity>
-
-        <activity
-            android:name=".activity.SendResultActivity"
-            android:exported="true"></activity>
-        <activity
-            android:name=".activity.RequestResultParentActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.LoginActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".activity.MainActivity"
+            android:exported="true">
+
+        </activity>
+
+        <activity
+            android:name=".activity.SendResultActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".activity.RequestResultParentActivity"
+            android:exported="true">
         </activity>
         <activity
             android:name=".activity.CheckInfoActivity"
@@ -49,7 +54,8 @@
             android:exported="true" />
         <activity
             android:name=".activity.ParentsSettingActivity"
-            android:exported="true"></activity>
+            android:exported="true">
+        </activity>
         <activity
             android:name=".activity.OnBoardingActivity"
             android:exported="true" />

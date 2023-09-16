@@ -183,20 +183,20 @@ class TestFragment : Fragment() {
             if (isCheck == true) {
 
 
+
 //                totalScore1 += questionScore
 
-viewModel.addviewModelscore(questionScore)
+                viewModel.addviewModelscore(questionScore)
+
+                viewModel.addviewModelScoreList(questionScore)
+
                 viewModel.addviewModelAnswerList(answer1)
+
                 Log.d("viewModel", "${viewModel.viewModelAnswerList} " +
                         " \n ${viewModel.viewModelscore}")
-                //데이터 넘기기 bundle
-//                val bundle = Bundle()
-//                bundle.putInt("totalScore1", totalScore1)
-//
-//                bundle.putString("answer1",answer1)
+
                 val test2To18Fragment = Test2To18Fragment()
 
-//                test2To18Fragment.arguments = bundle
 
 
                 fragmentManager?.beginTransaction()?.apply {
