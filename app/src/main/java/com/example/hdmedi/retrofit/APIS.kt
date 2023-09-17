@@ -42,4 +42,19 @@ interface APIS {
         @Header ("Authorization") Authorization : String,
         @Body surveyRequestBody: SurveyRequestBody
         ) : retrofit2.Call<SurveyResponseBody>
+
+
+    //검사 결과 조회
+    @GET("api/survey/all")
+    fun getSurveyAll(
+        @Header ("Authorization") Authorization : String
+    ) : retrofit2.Call<SurveyAllResponseBody>
+
+    @GET("api/survey/result")
+    fun getSurveyResult(
+        @Header ("Authorization") Authorization : String,
+        @Query ("surveyId") surveyId : Long
+    ) : retrofit2.Call<SurveyDetailResponseModel>
+
+
 }

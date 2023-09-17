@@ -30,6 +30,9 @@ class ParentsSettingActivity : BaseActivity<ActivityParentsSettingBinding>(R.lay
 
     private fun initNextButton(){
         binding.nextButton.setOnClickListener{
+
+
+
             if(binding.nextButton.isActivated){
                 val childrenName = binding.nameText.text.toString()
                 val birthday = binding.birthButton.text.toString()
@@ -56,6 +59,7 @@ class ParentsSettingActivity : BaseActivity<ActivityParentsSettingBinding>(R.lay
                             MyApplication.preferences.getString("birthday",""),
                             MyApplication.preferences.getString("gender",""), "naver")).
                     enqueue(object : Callback<SignUpResponseBody> {
+
                         override fun onResponse(call: Call<SignUpResponseBody>, response: Response<SignUpResponseBody>) {
                             if (response.isSuccessful) {
                                 val accessToken = response.body()!!.data.accessToken
