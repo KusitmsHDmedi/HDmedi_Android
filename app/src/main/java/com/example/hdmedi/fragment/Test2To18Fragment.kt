@@ -6,15 +6,21 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
 import androidx.fragment.app.*
-import androidx.lifecycle.ViewModelProvider
 import com.example.hdmedi.R
 import com.example.hdmedi.activity.ExitDialog
 import com.example.hdmedi.databinding.FragmentTest2To18Binding
+import com.example.hdmedi.model.QuestionList
+import com.example.hdmedi.model.SurveyRequestBody
+import com.example.hdmedi.model.SurveyResponseBody
 import com.example.hdmedi.resultViewModel
+import com.example.hdmedi.retrofit.APIS
+import com.example.hdmedi.retrofit.RetrofitInstance
+import com.example.hdmedi.sharedPreference.MyApplication
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class Test2To18Fragment : Fragment() {
@@ -22,6 +28,7 @@ class Test2To18Fragment : Fragment() {
     private var isCheck = false
     private var _binding: FragmentTest2To18Binding? = null
     private val binding get() = _binding!!
+    private val APIS = RetrofitInstance.retrofitInstance().create<APIS>(com.example.hdmedi.retrofit.APIS::class.java)
 
     private var answer = ""
 
@@ -39,12 +46,6 @@ class Test2To18Fragment : Fragment() {
 
     //질문 배열
     val questionArray = ArrayList<String>()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -323,11 +324,11 @@ class Test2To18Fragment : Fragment() {
 
                     val result1Fragment = Result1Fragment()
                     fragmentManager?.beginTransaction()?.apply {
+                        postResult()
                         replace(R.id.frameLayout, result1Fragment)
                         addToBackStack(null)
                         commit()
                     }
-
                 }
             }
         }
@@ -419,5 +420,40 @@ class Test2To18Fragment : Fragment() {
                         " \n ${viewModel.viewModelScoreList}")
             }
         }
+    }
+
+    private fun initSurveyResult(): List<QuestionList> {
+        val questionArray = resources.getStringArray(R.array.question)
+
+        val questionList = mutableListOf<QuestionList>()
+        for (i in questionArray.indices) {
+            val question = QuestionList(questionArray[i], viewModel.viewModelScoreList[i])
+            questionList.add(question)
+        }
+
+        val data: List<QuestionList> = questionList.toList()
+        return data
+    }
+
+    private fun postResult(){
+        APIS.postSurvey("Bearer " + MyApplication.preferences.getString("accessToken", ""),
+            SurveyRequestBody(initSurveyResult(), viewModel.viewModelScoreList.sum())).
+        enqueue(object: Callback<SurveyResponseBody>{
+            override fun onResponse(
+                call: Call<SurveyResponseBody>,
+                response: Response<SurveyResponseBody>
+            ) {
+                if(response.isSuccessful){
+                    Log.d("testtt", response.body()!!.data.message)
+                    Log.d("testtt", viewModel.viewModelScoreList.sum().toString())
+                }
+            }
+
+            override fun onFailure(call: Call<SurveyResponseBody>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
     }
 }
