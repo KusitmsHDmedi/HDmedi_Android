@@ -1,37 +1,25 @@
 package com.example.hdmedi.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import com.example.hdmedi.R
-import com.example.hdmedi.model.SignInRequestBody
-import com.example.hdmedi.model.SignInResponseBody
-import com.example.hdmedi.retrofit.APIS
-import com.example.hdmedi.retrofit.RetrofitInstance
+import com.example.hdmedi.databinding.ActivityLoginBinding
 import com.example.hdmedi.sharedPreference.MyApplication
 import com.navercorp.nid.NaverIdLoginSDK
 import com.navercorp.nid.oauth.NidOAuthLogin
 import com.navercorp.nid.oauth.OAuthLoginCallback
 import com.navercorp.nid.profile.NidProfileCallback
 import com.navercorp.nid.profile.data.NidProfileResponse
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.create
 
-class LoginActivity : AppCompatActivity() {
-
-
-    private val APIS = RetrofitInstance.retrofitInstance().create<APIS>(APIS::class.java)
-
+class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        initLoginButton()
+    }
 
-        val button = findViewById<Button>(R.id.naverLoginButton)
-        button.setOnClickListener {
+    private fun initLoginButton(){
+        binding.naverLoginButton.setOnClickListener {
             NaverIdLoginSDK.initialize(this@LoginActivity, getString(R.string.naver_client_id), getString(R.string.naver_client_secret), "앱 이름")
             NaverIdLoginSDK.authenticate(this@LoginActivity, oAuthLoginCallback)
         }
@@ -53,40 +41,6 @@ class LoginActivity : AppCompatActivity() {
                     Intent(this@LoginActivity, ParentsSettingActivity::class.java).apply {
                         startActivity(this)
                     }
-
-
-//                    try{
-//                        APIS.postNaverToken(naverToken, SignInRequestBody("naver")).enqueue(
-//                            object : Callback<SignInResponseBody> {
-//
-//                                override fun onResponse(call: Call<SignInResponseBody>, response: Response<SignInResponseBody>) {
-//                                    if (response.isSuccessful) {
-//
-//                                        val accessToken = response.body()!!.data.accessToken
-//                                        val userId = response.body()!!.data.userId
-//
-//                                        MyApplication.preferences.setString("accessToken", accessToken)
-//                                        MyApplication.preferences.setString("userId", userId.toString())
-//
-//
-//                                        Log.d("accessToken", accessToken)
-//
-
-//
-//                                            } else {
-//                                        Log.d("SignInResponseBody Response : ", " fail 1 , ${response.message()}")
-//                                          }
-//                                }
-//
-//                                override fun onFailure(call: Call<SignInResponseBody>, t: Throwable) {
-//                                    Log.d("SignInResponseBody Response : ", " fail 2 , ${t.message.toString()}")
-//                                }
-//                            })
-//                    } catch (e:Exception) {
-//                        Log.d("SignInResponseBody response : ", " fail 3 , ${e.message}")
-//                    }
-
-
                 }
 
                 override fun onError(errorCode: Int, message: String) {
@@ -103,6 +57,4 @@ class LoginActivity : AppCompatActivity() {
 
         override fun onFailure(httpStatus: Int, message: String) {}
     }
-
-
 }
