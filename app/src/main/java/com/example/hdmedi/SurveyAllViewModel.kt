@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.hdmedi.model.SurveyAll
+import com.example.hdmedi.model.SurveyAllResponseBody
 import com.example.hdmedi.model.list
 import com.example.hdmedi.retrofit.APIS
 import com.example.hdmedi.retrofit.RetrofitInstance
@@ -16,8 +18,8 @@ class SurveyAllViewModel : ViewModel(){
 
     private lateinit var API : APIS
 
-    private var _surveyAllList = MutableLiveData<ArrayList<list>>()
-    var surveyAllList : LiveData<ArrayList<list>> = _surveyAllList
+    private var _surveyAllList = MutableLiveData<SurveyAllResponseBody>()
+    var surveyAllList : LiveData<SurveyAllResponseBody> = _surveyAllList
 
     init {
         getSurveyAll()
@@ -30,9 +32,9 @@ class SurveyAllViewModel : ViewModel(){
 
         try{
             API.getSurveyAll("Bearer $accessToken").enqueue(
-                object : Callback<ArrayList<list>> {
+                object : Callback<SurveyAllResponseBody> {
 
-                    override fun onResponse(call: Call<ArrayList<list>>, response: Response<ArrayList<list>>) {
+                    override fun onResponse(call: Call<SurveyAllResponseBody>, response: Response<SurveyAllResponseBody>) {
                         if (response.isSuccessful) {
 
                             _surveyAllList.value = response.body()
@@ -45,7 +47,7 @@ class SurveyAllViewModel : ViewModel(){
                         }
                     }
 
-                    override fun onFailure(call: Call<ArrayList<list>>, t: Throwable) {
+                    override fun onFailure(call: Call<SurveyAllResponseBody>, t: Throwable) {
                         Log.d("getSurveyAll Response : ", " fail 2 , ${t.message.toString()}")
                     }
                 })

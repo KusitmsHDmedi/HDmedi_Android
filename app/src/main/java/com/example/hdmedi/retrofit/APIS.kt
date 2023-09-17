@@ -51,7 +51,7 @@ interface APIS {
     @GET("api/survey/all")
     fun getSurveyAll(
         @Header ("Authorization") Authorization : String
-    ) : retrofit2.Call<ArrayList<list>>
+    ) : retrofit2.Call<SurveyAllResponseBody>
 
 
 }

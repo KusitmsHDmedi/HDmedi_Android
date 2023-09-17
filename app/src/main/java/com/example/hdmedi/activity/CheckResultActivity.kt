@@ -8,6 +8,9 @@ import com.example.hdmedi.R
 import com.example.hdmedi.SurveyAllAdapter
 import com.example.hdmedi.SurveyAllViewModel
 import com.example.hdmedi.databinding.ActivityCheckResultBinding
+import com.example.hdmedi.model.SurveyAll
+import com.example.hdmedi.model.SurveyAllResponseBody
+import com.example.hdmedi.model.list
 
 class CheckResultActivity : BaseActivity<ActivityCheckResultBinding>(R.layout.activity_check_result) {
 
@@ -20,9 +23,10 @@ class CheckResultActivity : BaseActivity<ActivityCheckResultBinding>(R.layout.ac
 
 
 
+        val a =SurveyAll(ArrayList())
         viewModel = ViewModelProvider(this).get(SurveyAllViewModel::class.java)
 
-        surveyAllAdapter = SurveyAllAdapter(ArrayList())
+        surveyAllAdapter = SurveyAllAdapter(SurveyAllResponseBody(0,"",a))
         binding.rvSurveyAll.adapter = surveyAllAdapter
         binding.rvSurveyAll.layoutManager = LinearLayoutManager(this)
 

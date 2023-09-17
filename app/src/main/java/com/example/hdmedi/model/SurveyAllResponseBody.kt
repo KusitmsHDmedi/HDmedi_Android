@@ -9,7 +9,7 @@ data class SurveyAllResponseBody(
 )
 
 data class SurveyAll(
-    val allSurveyList : MutableList<list>
+    val allSurveyList : ArrayList<list>
 )
 data class list(
     val date : String,
