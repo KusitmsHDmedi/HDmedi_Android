@@ -5,21 +5,29 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hdmedi.model.SurveyAll
 import com.example.hdmedi.model.SurveyAllResponseBody
 import com.example.hdmedi.model.list
-import com.example.hdmedi.model.resultData
-import java.time.LocalDate
+
+interface ItemClick {
+    fun onClick(view: View, position: Int)
+}
 
 class SurveyAllAdapter(private var surveyAll : SurveyAllResponseBody) : RecyclerView.Adapter<SurveyAllAdapter.ViewHolder> (){
+    private var itemClick : ItemClick? = null
 
-    class ViewHolder(view : View) : RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(view : View) : RecyclerView.ViewHolder(view) {
         var rv_item_date : TextView = view.findViewById(R.id.text_survey_date)
-
 
         fun bind(item : list) {
             rv_item_date.text = item.date
+            itemView.setOnClickListener {
+                itemClick?.onClick(itemView, adapterPosition)
+            }
         }
+    }
+
+    fun setOnItemClickListener(listener : ItemClick) {
+        this.itemClick = listener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -29,27 +37,10 @@ class SurveyAllAdapter(private var surveyAll : SurveyAllResponseBody) : Recycler
 
     override fun getItemCount(): Int {
         return surveyAll.data.allSurveyList.size
-
     }
-
-    interface ItemClick {
-        fun onClick(view: View,position: Int)
-    }
-    var itemClick : ItemClick? = null
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = surveyAll.data.allSurveyList[position]
         holder.bind(item)
-
-        if(itemClick != null) {
-            holder?.itemView!!.setOnClickListener{v ->
-                itemClick!!.onClick(v,position)
-            }
-        }
-
     }
-
-
-
-
 }

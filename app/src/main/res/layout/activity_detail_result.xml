@@ -73,11 +73,23 @@
                 android:id="@+id/scoreText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="34점"
-                android:textSize="68dp"
+                android:text="34"
+                android:textSize="68sp"
+                android:fontFamily="@font/pretendard_semibold"
+                android:textColor="@color/main2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/parentCardView"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="점"
+                android:textSize="20sp"
+                android:fontFamily="@font/pretendard_semibold"
+                android:layout_marginBottom="14dp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toEndOf="@+id/scoreText"
+                app:layout_constraintBottom_toBottomOf="@+id/scoreText"/>
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/detailText"

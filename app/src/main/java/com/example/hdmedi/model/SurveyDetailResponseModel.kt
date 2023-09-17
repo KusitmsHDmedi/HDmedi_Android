@@ -10,5 +10,5 @@ data class SurveyList (
    val  parentsScore : String,
    val  parentsMessage : String,
    val  teacherScore : String,
-   val  teacherMessage : String,
-        )
+   val  teacherMessage : String
+)
