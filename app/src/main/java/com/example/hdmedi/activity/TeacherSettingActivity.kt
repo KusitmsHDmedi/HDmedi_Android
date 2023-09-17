@@ -9,6 +9,7 @@ import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
+import android.util.Log
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
@@ -86,6 +87,8 @@ class TeacherSettingActivity : BaseActivity<ActivityTeacherSettingBinding>(R.lay
                     MyApplication.preferences.setString("childrenName", data.childName)
                     MyApplication.preferences.setString("birthday", data.birthday)
                     MyApplication.preferences.setString("userName", data.parentsName)
+                    MyApplication.preferences.setString("gender", data.gender)
+                    Log.d("testtt", data.gender)
                     Intent(this@TeacherSettingActivity, CheckInfoActivity::class.java).apply {
                         startActivity(this)
                         finish()

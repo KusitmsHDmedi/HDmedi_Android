@@ -22,7 +22,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
         if(gender == "man") {
             binding.gender.setText("남자아이")
 
-        } else if (gender == "woman") {
+        }else if (gender == "woman") {
             binding.gender.setText("여자아이")
         }
         binding.nameText.setText(name)
@@ -44,6 +44,11 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
             val intent = Intent(this, CheckResultActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")

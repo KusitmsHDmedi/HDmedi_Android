@@ -30,9 +30,6 @@ class ParentsSettingActivity : BaseActivity<ActivityParentsSettingBinding>(R.lay
 
     private fun initNextButton(){
         binding.nextButton.setOnClickListener{
-
-
-
             if(binding.nextButton.isActivated){
                 val childrenName = binding.nameText.text.toString()
                 val birthday = binding.birthButton.text.toString()
@@ -59,16 +56,16 @@ class ParentsSettingActivity : BaseActivity<ActivityParentsSettingBinding>(R.lay
                             MyApplication.preferences.getString("birthday",""),
                             MyApplication.preferences.getString("gender",""), "naver")).
                     enqueue(object : Callback<SignUpResponseBody> {
-
                         override fun onResponse(call: Call<SignUpResponseBody>, response: Response<SignUpResponseBody>) {
-                            if (response.isSuccessful) {
+                            if(response.isSuccessful) {
                                 val accessToken = response.body()!!.data.accessToken
                                 MyApplication.preferences.setString("accessToken", accessToken)
 
-                                val intent = Intent(baseContext, HomeActivity::class.java)
+                                val intent = Intent(this@ParentsSettingActivity, HomeActivity::class.java)
                                 startActivity(intent)
-                            } else {
-                                Log.d("SignUpResponseBody Response : ", " fail 1 , ${response.message()}")
+                                finish()
+                            }else {
+                                Log.d("SignUpResponseBody Response : ", " fail 1 , ${response.toString()}")
                             }
                         }
                         override fun onFailure(call: Call<SignUpResponseBody>, t: Throwable) {
