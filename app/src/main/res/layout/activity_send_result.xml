@@ -17,7 +17,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="124dp"
-            android:text="금쪽이의 자가진단을\n선생님께 요청했습니다!"
             android:lineSpacingExtra="6dp"
             android:textAlignment="center"
             android:textColor="@color/black"
