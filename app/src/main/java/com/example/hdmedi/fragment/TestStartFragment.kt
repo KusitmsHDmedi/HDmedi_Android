@@ -2,11 +2,9 @@ package com.example.hdmedi.fragment
 
 import android.graphics.Color
 import android.os.Bundle
-import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -26,6 +24,7 @@ class TestStartFragment : Fragment() {
         _binding = FragmentTestStartBinding.inflate(inflater,container,false)
         val view = binding.root
         initTitleText()
+        initGenderImage(MyApplication.preferences.getString("gender", ""))
         //시작하기 버튼 클릭
         binding.btnStart.setOnClickListener {
             val testFragment = TestFragment()
@@ -45,6 +44,14 @@ class TestStartFragment : Fragment() {
         val textData = binding.titleText.text.toString()
         binding.titleText.text = SpannableStringBuilder(textData).apply {
             setSpan(greenSpan, 0, name.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        }
+    }
+
+    private fun initGenderImage(gender: String){
+        if(gender=="woman"){
+            binding.image.setBackgroundResource(R.drawable.main_girl)
+        }else if(gender=="man"){
+            binding.image.setBackgroundResource(R.drawable.main_boy)
         }
     }
 }
