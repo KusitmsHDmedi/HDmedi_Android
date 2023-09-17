@@ -8,11 +8,13 @@ import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import com.example.hdmedi.R
 import com.example.hdmedi.databinding.ActivityCheckInfoBinding
+import com.example.hdmedi.sharedPreference.MyApplication
 
 class CheckInfoActivity : BaseActivity<ActivityCheckInfoBinding>(R.layout.activity_check_info){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initTitleText()
+        initInfo()
 
         //yes btn
         binding.yesButton.setOnClickListener {
@@ -22,7 +24,7 @@ class CheckInfoActivity : BaseActivity<ActivityCheckInfoBinding>(R.layout.activi
 
         //no btn
         binding.noButton.setOnClickListener {
-
+            finish()
             val intent = Intent(this, OnBoardingActivity::class.java)
             startActivity(intent)
         }
@@ -35,5 +37,11 @@ class CheckInfoActivity : BaseActivity<ActivityCheckInfoBinding>(R.layout.activi
         binding.titleText.text = SpannableStringBuilder(textData).apply {
             setSpan(greenSpan, 8, 14, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         }
+    }
+
+    private fun initInfo(){
+        binding.nameText.text = MyApplication.preferences.getString("childrenName", "")
+        binding.birthText.text = MyApplication.preferences.getString("birthday", "")
+        binding.detailText.text = MyApplication.preferences.getString("userName", "") + "의 자녀"
     }
 }
