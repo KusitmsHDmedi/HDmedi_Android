@@ -10,8 +10,6 @@ import retrofit2.http.Query
 
 
 interface APIS {
-
-
     //로그인
     @POST("api/user/signIn")
     fun postNaverToken(
@@ -36,16 +34,15 @@ interface APIS {
     @POST("api/user/signIn/guest")
     fun postGuestSignIn(
         @Header ("Authorization") Authorization : String,
-
         ) : retrofit2.Call<GuestSignInResponseBody>
 
     //설문 조사 제출
     @POST("api/survey")
     fun postSurvey(
         @Header ("Authorization") Authorization : String,
-
         @Body surveyRequestBody: SurveyRequestBody
         ) : retrofit2.Call<SurveyResponseBody>
+
 
     //검사 결과 조회
     @GET("api/survey/all")

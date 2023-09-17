@@ -1,31 +1,58 @@
 package com.example.hdmedi.activity
 
-import android.app.PendingIntent
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Bundle
 import android.telephony.SmsManager
-import android.util.Log
 import android.widget.EditText
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.hdmedi.R
 import com.example.hdmedi.databinding.ActivityRequestResultParentBinding
+import com.example.hdmedi.model.AuthCodeResponseBody
+import com.example.hdmedi.retrofit.APIS
+import com.example.hdmedi.retrofit.RetrofitInstance
+import com.example.hdmedi.sharedPreference.MyApplication
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class RequestResultParentActivity : BaseActivity<ActivityRequestResultParentBinding>(R.layout.activity_request_result_parent), DialogListener {
+    private val APIS = RetrofitInstance.retrofitInstance().create<APIS>(com.example.hdmedi.retrofit.APIS::class.java)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        editText = arrayOf(binding.numberText, binding.codeText, binding.detailText)
-        initEditTEXT(binding.numberText, 11)
-        initEditTEXT(binding.codeText, 5)
+        editText = arrayOf(binding.numberText, binding.detailText)
+        initEditText(binding.numberText, 11)
         initDetailText()
         initSendButton()
+        initBackButton()
+        initExitButton()
+        getAuthCode()
     }
 
     override fun onYesButtonClickListener() {
         checkPermission()
+    }
+
+    private fun initBackButton(){
+        binding.backButton.setOnClickListener {
+            finish()
+        }
+    }
+
+    private fun initExitButton(){
+        binding.exitButton.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            intent.apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                startActivity(this)
+            }
+            finish()
+        }
     }
 
     private fun initSendButton(){
@@ -42,7 +69,11 @@ class RequestResultParentActivity : BaseActivity<ActivityRequestResultParentBind
         }
     }
 
-    private fun initEditTEXT(e: EditText, length: Int){
+    private fun initCodeText(code: String){
+        binding.codeText.text = code
+    }
+
+    private fun initEditText(e: EditText, length: Int){
         e.setOnFocusChangeListener { view, b ->
             if(!b && e.text.isNotEmpty()){
                 view.isSelected = true
@@ -75,25 +106,23 @@ class RequestResultParentActivity : BaseActivity<ActivityRequestResultParentBind
 
     private fun sendMessage(phoneNumber: String, message: String) {
         val smsManager = SmsManager.getDefault()
-        val sentIntent = Intent("SMS_SENT")
-        val deliveredIntent = Intent("SMS_DELIVERED")
+        val parts = smsManager.divideMessage(message)
 
-        val sentPI = PendingIntent.getBroadcast(this, 0, sentIntent, PendingIntent.FLAG_IMMUTABLE)
-        val deliveredPI = PendingIntent.getBroadcast(this, 0, deliveredIntent, PendingIntent.FLAG_IMMUTABLE)
-        smsManager.sendTextMessage(phoneNumber, null, message, sentPI, deliveredPI)
+        smsManager.sendMultipartTextMessage(phoneNumber, null, parts, null, null)
         Intent(this, SendResultActivity::class.java).apply {
             startActivity(this)
         }
     }
 
+    @SuppressLint("ResourceAsColor")
     private fun activateSendButton(){
         binding.sendButton.apply {
-            if(binding.numberText.isActivated && binding.detailText.isActivated && binding.codeText.isActivated) {
+            if(binding.numberText.isActivated && binding.detailText.isActivated) {
                 isActivated = true
                 setTextColor(Color.WHITE)
             }else{
                 isActivated = false
-                setTextColor(Color.BLACK)
+                setTextColor(R.color.gray700)
             }
         }
     }
@@ -101,10 +130,37 @@ class RequestResultParentActivity : BaseActivity<ActivityRequestResultParentBind
     private fun checkPermission(){
         val permission = ContextCompat.checkSelfPermission(this, android.Manifest.permission.SEND_SMS)
         if(permission==PackageManager.PERMISSION_GRANTED){
-            sendMessage(binding.numberText.text.toString(), binding.detailText.text.toString())
+            sendMessage(binding.numberText.text.toString(), setMessageText())
         }else{
             ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.SEND_SMS),99)
         }
+    }
+
+    private fun getAuthCode(){
+        APIS.getAuthCode("Bearer "+ MyApplication.preferences.getString("accessToken", "")).
+        enqueue(object: Callback<AuthCodeResponseBody> {
+            override fun onResponse(
+                call: Call<AuthCodeResponseBody>,
+                response: Response<AuthCodeResponseBody>
+            ) {
+                if(response.isSuccessful){
+                    initCodeText(response.body()!!.data.authCode)
+                }
+            }
+
+            override fun onFailure(call: Call<AuthCodeResponseBody>, t: Throwable) { }
+        })
+    }
+
+    private fun setMessageText(): String {
+        val name = MyApplication.preferences.getString("childrenName", "")
+        return "안녕하세요 아이약 서비스입니다.\n" + name + "" +
+                "의 학부모님께서 아이의 ADHD 자가진단 검 사를 요청하였습니다. 아이와 학부모를 위해 평소 선 생님이 바라본 아이의 모습을 바탕으로 검사해주면 감사하겠습니다.\n\n" +
+                name + "의 학부모 요청사항\n" +
+                "[" + binding.detailText.text.toString() + "]\n\n" +
+                "아이의 자가진단에 참여하시려면 하단의 다운로드 링 크를 통해 어플을 다운로드 받은 후 아이 코드를 입력 해주세요!\n" +
+                "다운로드 링크 : https://play.google.com/store/apps/details?id=kr.co.hdmedi.boedoc&hl=ko-KR\n" +
+                "아이코드 : " + binding.codeText.text.toString()
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -112,7 +168,7 @@ class RequestResultParentActivity : BaseActivity<ActivityRequestResultParentBind
         when(requestCode){
             99 -> {
                 if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    sendMessage(binding.numberText.text.toString(), binding.detailText.text.toString())
+                    sendMessage(binding.numberText.text.toString(), setMessageText())
                 }else{
                     Toast.makeText(this, "결과를 전송하려면 권한이 필요합니다", Toast.LENGTH_SHORT).show()
                 }

@@ -6,25 +6,29 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
 import androidx.fragment.app.*
-import androidx.lifecycle.ViewModelProvider
 import com.example.hdmedi.R
 import com.example.hdmedi.activity.ExitDialog
 import com.example.hdmedi.databinding.FragmentTest2To18Binding
+import com.example.hdmedi.model.QuestionList
+import com.example.hdmedi.model.SurveyRequestBody
+import com.example.hdmedi.model.SurveyResponseBody
 import com.example.hdmedi.resultViewModel
+import com.example.hdmedi.retrofit.APIS
+import com.example.hdmedi.retrofit.RetrofitInstance
+import com.example.hdmedi.sharedPreference.MyApplication
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class Test2To18Fragment : Fragment() {
-
     private  val viewModel: resultViewModel by activityViewModels()
-
-
     private var isCheck = false
     private var _binding: FragmentTest2To18Binding? = null
     private val binding get() = _binding!!
+    private val APIS = RetrofitInstance.retrofitInstance().create<APIS>(com.example.hdmedi.retrofit.APIS::class.java)
 
     private var answer = ""
 
@@ -43,12 +47,6 @@ class Test2To18Fragment : Fragment() {
     //질문 배열
     val questionArray = ArrayList<String>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -62,17 +60,6 @@ class Test2To18Fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-//
-//        val bundle = arguments
-//        val receivedData1 = bundle!!.getInt("totalScore1")
-//        val receivedData2 = bundle!!.getString("answer1")
-//
-//        totalScore+=receivedData1
-//
-//        answerArray.add(receivedData2!!)
-
-
         questionArray.add(
             "우리 아이가 손발을 가만히 \n" +
                     "두지 못하거나 의자에 앉아서도 몸을 꼼지락 거리나요?"
@@ -218,8 +205,7 @@ class Test2To18Fragment : Fragment() {
             answer = "자주 그렇다"
             questionScore = 2
 
-            if (isCheck == true) {
-
+            if(isCheck) {
                 binding.btnNextColor.setTextColor(Color.parseColor("#FFFFFF"))
                 binding.nextColor.setBackgroundColor(Color.parseColor("#00C67B"))
 
@@ -245,33 +231,21 @@ class Test2To18Fragment : Fragment() {
             answer = "매우 자주 그렇다"
             questionScore = 3
 
-            if (isCheck == true) {
-
+            if(isCheck) {
                 binding.btnNextColor.setTextColor(Color.parseColor("#FFFFFF"))
                 binding.nextColor.setBackgroundColor(Color.parseColor("#00C67B"))
-
             }
         }
 
         //다음 클릭
         binding.btnNext.setOnClickListener {
-
-
-
-            if (isCheck == true) {
-
-
+            if (isCheck) {
                 questionNum++
-
                 if (questionNum <= 18) {
-
-
                     //질문 숫자 변화
                     binding.textQuestionNum.setText("${questionNum}/18")
 
-
                     //progressBar 변화
-
                     if (questionNum == 3) {
                         binding.progressBar.setImageResource(R.drawable.progress3)
                     } else if (questionNum == 4) {
@@ -307,12 +281,8 @@ class Test2To18Fragment : Fragment() {
                     }
 
                     //질문 변화
-                    binding.textQuestion.setText(questionArray.get(questionNum - 2))
-
-
+                    binding.textQuestion.text = questionArray.get(questionNum - 2)
                     //총 점수 변화
-//                    totalScore += questionScore
-
                     viewModel.addviewModelscore(questionScore)
 
                     viewModel.addviewModelScoreList(questionScore)
@@ -327,7 +297,6 @@ class Test2To18Fragment : Fragment() {
                     binding.checkAnswer2.setImageResource(R.drawable.uncheck)
                     binding.checkAnswer0.setImageResource(R.drawable.uncheck)
 
-
                     binding.answer3Color.setBackgroundColor(Color.parseColor("#ffffff"))
                     binding.answer1Color.setBackgroundColor(Color.parseColor("#ffffff"))
                     binding.answer2Color.setBackgroundColor(Color.parseColor("#ffffff"))
@@ -338,9 +307,6 @@ class Test2To18Fragment : Fragment() {
                     isCheck = false
                     binding.btnNextColor.setTextColor(Color.parseColor("#000000"))
                     binding.nextColor.setBackgroundColor(Color.parseColor("#E8EBF0"))
-
-
-
                 } else if (questionNum == 19) {
 
 //
@@ -358,24 +324,18 @@ class Test2To18Fragment : Fragment() {
 
                     val result1Fragment = Result1Fragment()
                     fragmentManager?.beginTransaction()?.apply {
+                        postResult()
                         replace(R.id.frameLayout, result1Fragment)
                         addToBackStack(null)
                         commit()
                     }
-
                 }
-
-
             }
-
-
         }
 
         //이전 버튼
         binding.btnBack.setOnClickListener {
-
             if(questionNum==2) {
-
                 //제거 로직
                 viewModel.viewModelAnswerList.removeLast()
                 viewModel.viewModelScoreList.removeLast()
@@ -390,7 +350,6 @@ class Test2To18Fragment : Fragment() {
                     addToBackStack(null)
                     commit()
                 }
-
             } else {
                 //이전 번호
                 questionNum--
@@ -460,10 +419,41 @@ class Test2To18Fragment : Fragment() {
                 Log.d("viewModel", "${viewModel.viewModelAnswerList} " +
                         " \n ${viewModel.viewModelScoreList}")
             }
-            }
-
-
+        }
     }
 
+    private fun initSurveyResult(): List<QuestionList> {
+        val questionArray = resources.getStringArray(R.array.question)
 
+        val questionList = mutableListOf<QuestionList>()
+        for (i in questionArray.indices) {
+            val question = QuestionList(questionArray[i], viewModel.viewModelScoreList[i])
+            questionList.add(question)
+        }
+
+        val data: List<QuestionList> = questionList.toList()
+        return data
+    }
+
+    private fun postResult(){
+        APIS.postSurvey("Bearer " + MyApplication.preferences.getString("accessToken", ""),
+            SurveyRequestBody(initSurveyResult(), viewModel.viewModelScoreList.sum())).
+        enqueue(object: Callback<SurveyResponseBody>{
+            override fun onResponse(
+                call: Call<SurveyResponseBody>,
+                response: Response<SurveyResponseBody>
+            ) {
+                if(response.isSuccessful){
+                    Log.d("testtt", response.body()!!.data.message)
+                    Log.d("testtt", viewModel.viewModelScoreList.sum().toString())
+                }
+            }
+
+            override fun onFailure(call: Call<SurveyResponseBody>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+    }
 }
