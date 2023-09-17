@@ -23,12 +23,12 @@ class SurveyAllAdapter(private var surveyAll : SurveyAllResponseBody) : Recycler
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.rv_result_item,parent,false)
-    return ViewHolder(view)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.rv_item_surveyall,parent,false)
+        return ViewHolder(view)
     }
 
     override fun getItemCount(): Int {
-       return surveyAll.data.allSurveyList.size
+        return surveyAll.data.allSurveyList.size
 
     }
 
@@ -53,4 +53,3 @@ class SurveyAllAdapter(private var surveyAll : SurveyAllResponseBody) : Recycler
 
 
 }
-

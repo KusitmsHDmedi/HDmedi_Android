@@ -13,7 +13,16 @@ class DetailResultActivity : BaseActivity<ActivityDetailResultBinding>(R.layout.
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val id = intent.getStringExtra("id")
 
+
+        viewModel.getSurveyResult(id!!.toLong())
+
+        viewModel.surveyDetailList.observe(this, {
+            result ->
+            binding.scoreText.setText(result.data.parentsMessage)
+            binding.textResult.setText(result.data.parentsMessage)
+        })
 
 
     }
