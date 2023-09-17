@@ -43,5 +43,13 @@ class CheckInfoActivity : BaseActivity<ActivityCheckInfoBinding>(R.layout.activi
         binding.nameText.text = MyApplication.preferences.getString("childrenName", "")
         binding.birthText.text = MyApplication.preferences.getString("birthday", "")
         binding.detailText.text = MyApplication.preferences.getString("userName", "") + "의 자녀"
+        val gender = MyApplication.preferences.getString("gender", "")
+        if(gender=="MAN"){
+            binding.genderText.text = "남자 아이"
+            binding.childIcon.setBackgroundDrawable(getDrawable(R.drawable.ic_child))
+        }else if(gender=="WOMAN"){
+            binding.genderText.text = "여자 아이"
+            binding.childIcon.setBackgroundDrawable(getDrawable(R.drawable.ic_girl))
+        }
     }
 }
