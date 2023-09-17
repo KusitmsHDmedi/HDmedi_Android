@@ -101,7 +101,7 @@
             android:fontFamily="@font/pretendard_medium"
             android:textSize="18sp"/>
         
-        <EditText
+        <TextView
             android:id="@+id/codeText"
             android:layout_width="0dp"
             android:layout_height="56dp"
@@ -110,21 +110,24 @@
             app:layout_constraintTop_toBottomOf="@+id/codeTitle"
             android:layout_marginTop="10dp"
             android:paddingStart="20dp"
-            android:background="@drawable/gender_button_selector"/>
-        
+            android:background="@drawable/gender_button_activated"
+            android:textSize="18sp"
+            android:fontFamily="@font/pretendard_semibold"
+            android:gravity="center_vertical"/>
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/sendButton"
             android:layout_width="0dp"
             android:layout_height="56dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="28dp"
-            android:text="보내기"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/button_selector"
             android:fontFamily="@font/pretendard_semibold"
+            android:text="보내기"
+            android:textColor="@color/gray700"
             android:textSize="16sp"
-            android:textColor="#595F72"
-            android:background="@drawable/button_selector"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

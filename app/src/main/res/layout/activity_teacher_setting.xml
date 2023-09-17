@@ -39,8 +39,7 @@
             android:paddingStart="19dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleText"
-            android:hint="숫자 5자리"/>
+            app:layout_constraintTop_toBottomOf="@+id/titleText" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/nextButton"
