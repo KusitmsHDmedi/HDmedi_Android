@@ -1,7 +1,10 @@
 package com.example.hdmedi.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hdmedi.R
@@ -30,6 +33,7 @@ class CheckResultActivity : BaseActivity<ActivityCheckResultBinding>(R.layout.ac
         binding.rvSurveyAll.adapter = surveyAllAdapter
         binding.rvSurveyAll.layoutManager = LinearLayoutManager(this)
 
+        viewModel.getSurveyAll()
         viewModel.surveyAllList.observe(this, {
             result->
             surveyAllAdapter = SurveyAllAdapter(result)
@@ -38,5 +42,25 @@ class CheckResultActivity : BaseActivity<ActivityCheckResultBinding>(R.layout.ac
         }
 
         )
+
+        surveyAllAdapter.itemClick = object : SurveyAllAdapter.ItemClick{
+            override fun onClick(view: View, position: Int) {
+
+               //아이디 넘기기
+               val id = viewModel.surveyAllList.value!!.data.allSurveyList[position].surveyId
+
+
+
+               val intent = Intent(baseContext, DetailResultActivity::class.java)
+                intent.putExtra("id",id )
+                startActivity(intent)
+            }
+        }
+
+
+        binding.backButton.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

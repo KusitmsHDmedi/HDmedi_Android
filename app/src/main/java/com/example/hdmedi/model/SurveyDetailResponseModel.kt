@@ -7,11 +7,8 @@ data class SurveyDetailResponseModel(
 )
 
 data class SurveyList (
-   val  parentsSurveyList : MutableList<Question>,
-   val  teacherSurveyList : MutableList<Question>
+   val  parentsScore : String,
+   val  parentsMessage : String,
+   val  teacherScore : String,
+   val  teacherMessage : String,
         )
-
-data class Question(
-    val question : String,
-    val score : Int
-)

@@ -32,11 +32,24 @@ class SurveyAllAdapter(private var surveyAll : SurveyAllResponseBody) : Recycler
 
     }
 
+    interface ItemClick {
+        fun onClick(view: View,position: Int)
+    }
+    var itemClick : ItemClick? = null
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = surveyAll.data.allSurveyList[position]
         holder.bind(item)
 
+        if(itemClick != null) {
+            holder?.itemView!!.setOnClickListener{v ->
+                itemClick!!.onClick(v,position)
+            }
+        }
+
     }
+
+
 
 
 }
