@@ -22,10 +22,29 @@ class RequestResultParentActivity : BaseActivity<ActivityRequestResultParentBind
         initEditTEXT(binding.codeText, 5)
         initDetailText()
         initSendButton()
+        initBackButton()
+        initExitButton()
     }
 
     override fun onYesButtonClickListener() {
         checkPermission()
+    }
+
+    private fun initBackButton(){
+        binding.backButton.setOnClickListener {
+            finish()
+        }
+    }
+
+    private fun initExitButton(){
+        binding.exitButton.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            intent.apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                startActivity(this)
+            }
+            finish()
+        }
     }
 
     private fun initSendButton(){

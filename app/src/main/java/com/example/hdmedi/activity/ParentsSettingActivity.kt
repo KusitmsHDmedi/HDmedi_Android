@@ -8,8 +8,6 @@ import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import com.example.hdmedi.R
 import com.example.hdmedi.databinding.ActivityParentsSettingBinding
-import com.example.hdmedi.model.SignInRequestBody
-import com.example.hdmedi.model.SignInResponseBody
 import com.example.hdmedi.model.SignUpRequestBody
 import com.example.hdmedi.model.SignUpResponseBody
 import com.example.hdmedi.retrofit.APIS
@@ -20,88 +18,63 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class ParentsSettingActivity : BaseActivity<ActivityParentsSettingBinding>(R.layout.activity_parents_setting), PostDialogData {
-
-        private val APIS = RetrofitInstance.retrofitInstance().create<APIS>(com.example.hdmedi.retrofit.APIS::class.java)
+    private val APIS = RetrofitInstance.retrofitInstance().create<APIS>(com.example.hdmedi.retrofit.APIS::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initGenderButton()
         initEditText()
         initBirthButton()
-
-
         initNextButton()
     }
 
     private fun initNextButton(){
-
         binding.nextButton.setOnClickListener{
+            if(binding.nextButton.isActivated){
+                val childrenName = binding.nameText.text.toString()
+                val birthday = binding.birthButton.text.toString()
+                Log.d("birth", birthday)
+                //sharedPreference 이름,생일,성별 저장
+                if(binding.maleButton.isSelected) {
+                    MyApplication.preferences.setString("gender", "man")
+                } else if (binding.femaleButton.isSelected) {
+                    MyApplication.preferences.setString("gender", "woman")
+                }
 
-        if(binding.nextButton.isActivated){
+                MyApplication.preferences.setString("childrenName", childrenName)
+                MyApplication.preferences.setString("birthday",birthday)
+                MyApplication.preferences.setBoolean("isLogin", true)
 
-            val childrenName = binding.nameText.text.toString()
-
-            val birthday = binding.birthButton.text.toString()
-            Log.d("birth", birthday)
-            //sharedPreference 이름,생일,성별 저장
-
-            if(binding.maleButton.isSelected) {
-
-                MyApplication.preferences.setString("gender", "man")
-            } else if (binding.femaleButton.isSelected) {
-                MyApplication.preferences.setString("gender", "woman")
-            }
-
-
-             
-            MyApplication.preferences.setString("childrenName", childrenName)
-
-            MyApplication.preferences.setString("birthday",birthday )
-
-           val accessToken =  MyApplication.preferences.getString("accessToken", "")
-Log.d("accessToken2",accessToken)
-            try{
-                APIS.postSignUp("Bearer $accessToken",
-                    SignUpRequestBody(
-                    MyApplication.preferences.getString("userName",""),
-                    MyApplication.preferences.getString("childrenName",""),
-                    MyApplication.preferences.getString("birthday",""),
-                    MyApplication.preferences.getString("gender",""),
-                    "naver"
-
-                    )).enqueue(
-                    object : Callback<SignUpResponseBody> {
-
+                val accessToken =  MyApplication.preferences.getString("accessToken", "")
+                Log.d("accessToken2",accessToken)
+                try{
+                    APIS.postSignUp(
+                        "Bearer $accessToken",
+                        SignUpRequestBody(
+                            MyApplication.preferences.getString("userName",""),
+                            MyApplication.preferences.getString("childrenName",""),
+                            MyApplication.preferences.getString("birthday",""),
+                            MyApplication.preferences.getString("gender",""), "naver")).
+                    enqueue(object : Callback<SignUpResponseBody> {
                         override fun onResponse(call: Call<SignUpResponseBody>, response: Response<SignUpResponseBody>) {
                             if (response.isSuccessful) {
-
-
                                 val accessToken = response.body()!!.data.accessToken
-                                MyApplication.preferences.setString("accessToken",accessToken )
-
-
+                                MyApplication.preferences.setString("accessToken", accessToken)
 
                                 val intent = Intent(baseContext, HomeActivity::class.java)
-
                                 startActivity(intent)
-
-
                             } else {
                                 Log.d("SignUpResponseBody Response : ", " fail 1 , ${response.message()}")
                             }
                         }
-
                         override fun onFailure(call: Call<SignUpResponseBody>, t: Throwable) {
                             Log.d("SignUpResponseBody Response : ", " fail 2 , ${t.message.toString()}")
                         }
                     })
-            } catch (e:Exception) {
-                Log.d("SignUpResponseBody response : ", " fail 3 , ${e.message}")
+                } catch (e:Exception) {
+                    Log.d("SignUpResponseBody response : ", " fail 3 , ${e.message}")
+                }
             }
-
-            }
-
-
         }
     }
 

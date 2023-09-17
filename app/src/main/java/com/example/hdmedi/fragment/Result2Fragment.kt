@@ -12,9 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import com.example.hdmedi.R
 import com.example.hdmedi.activity.RequestResultParentActivity
-import com.example.hdmedi.databinding.FragmentResult1Binding
 import com.example.hdmedi.databinding.FragmentResult2Binding
 import com.example.hdmedi.resultViewModel
 import com.example.hdmedi.sharedPreference.MyApplication
@@ -36,9 +34,12 @@ class Result2Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initTitleText()
+        initExitButton()
+        initNextButton()
+        initBackButton()
+
         val score = viewModel.viewModelScoreList.sum()
         Log.d("score",score.toString())
-
         binding.finalScore.text = score.toString()
 
         if(score >=19) {
@@ -48,22 +49,35 @@ class Result2Fragment : Fragment() {
             binding.textResult.text = "19점 미만인 경우 주의력결핍 및 과잉행동 장애가 아닐 가능성이 있습니다. 그러나 아동은 성장기에 급속한 변화를 보일 수 있으므로 추후에도 자녀의 성장에 많은 관심을 가지고 지켜봐주시기를 부탁드립니다."
             binding.condition.text = "19점 미만일 경우"
         }
+    }
 
+    private fun initNextButton(){
         //자가진단 요청하기
         binding.btnNext.setOnClickListener {
-            //request result parent 연결
             val intent = Intent(requireContext(), RequestResultParentActivity::class.java)
             startActivity(intent)
         }
     }
 
+    private fun initBackButton(){
+        binding.backButton.setOnClickListener {
+            activity?.supportFragmentManager?.popBackStack()
+        }
+    }
+
+    private fun initExitButton(){
+        binding.exitButton.setOnClickListener {
+            activity?.finish()
+        }
+    }
+
     private fun initTitleText(){
         val greenSpan = ForegroundColorSpan(Color.parseColor("#2BAE76"))
-        val name = MyApplication.preferences.getString("name", "")
-
-        binding.titleText.apply {
-            text = name + "의 \nADHD 자가진단 점수"
-            SpannableStringBuilder(text.toString()).setSpan(greenSpan, 0, name.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        val name = MyApplication.preferences.getString("childrenName", "")
+        binding.titleText.text= name + "의 \nADHD 자가진단 점수"
+        val textData = binding.titleText.text.toString()
+        binding.titleText.text = SpannableStringBuilder(textData).apply {
+            setSpan(greenSpan, 0, name.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         }
     }
 }
