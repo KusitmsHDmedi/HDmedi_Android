@@ -1,10 +1,12 @@
 package com.example.hdmedi.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import android.widget.Toast
+
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hdmedi.R
@@ -13,7 +15,7 @@ import com.example.hdmedi.SurveyAllViewModel
 import com.example.hdmedi.databinding.ActivityCheckResultBinding
 import com.example.hdmedi.model.SurveyAll
 import com.example.hdmedi.model.SurveyAllResponseBody
-import com.example.hdmedi.model.list
+
 
 class CheckResultActivity : BaseActivity<ActivityCheckResultBinding>(R.layout.activity_check_result) {
 
@@ -43,19 +45,37 @@ class CheckResultActivity : BaseActivity<ActivityCheckResultBinding>(R.layout.ac
 
         )
 
-        surveyAllAdapter.itemClick = object : SurveyAllAdapter.ItemClick{
-            override fun onClick(view: View, position: Int) {
+//        surveyAllAdapter.itemClick = object : SurveyAllAdapter.ItemClick{
+//            override fun onClick(view: View, position: Int) {
+//
+//               //아이디 넘기기
+//               val id = viewModel.surveyAllList.value!!.data.allSurveyList[position].surveyId
+//
+//
+//                Log.d("id", id.toString())
+//                Log.d("click", "click")
+//
+//               val intent = Intent(baseContext, DetailResultActivity::class.java)
+//                intent.putExtra("id",id )
+//                startActivity(intent)
+//            }
+//        }
 
-               //아이디 넘기기
-               val id = viewModel.surveyAllList.value!!.data.allSurveyList[position].surveyId
-
-
-
-               val intent = Intent(baseContext, DetailResultActivity::class.java)
-                intent.putExtra("id",id )
-                startActivity(intent)
-            }
-        }
+//        surveyAllAdapter.setOnItemClickListener(object : OnItemClickListener {
+//            @SuppressLint("ResourceType")
+//            override fun onItemClick(v: View, data: SurveyAllResponseBody, pos: Int) {
+//
+//               val id = viewModel.surveyAllList.value!!.data.allSurveyList[pos].surveyId
+//
+//
+//                Log.d("id", id.toString())
+//                Log.d("click", "click")
+//
+//               val intent = Intent(baseContext, DetailResultActivity::class.java)
+//                intent.putExtra("id",id )
+//                startActivity(intent)
+//            }
+//        })
 
 
         binding.backButton.setOnClickListener {
