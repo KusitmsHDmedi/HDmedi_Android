@@ -55,7 +55,7 @@ class ParentsSettingActivity : BaseActivity<ActivityParentsSettingBinding>(R.lay
 
              
             MyApplication.preferences.setString("childrenName", childrenName)
-
+            MyApplication.preferences.setBoolean("isLogin", true)
             MyApplication.preferences.setString("birthday",birthday )
 
            val accessToken =  MyApplication.preferences.getString("accessToken", "")
