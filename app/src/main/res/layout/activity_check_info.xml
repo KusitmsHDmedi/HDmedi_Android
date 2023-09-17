@@ -92,6 +92,7 @@
                     android:textStyle="bold"/>
                 
                 <TextView
+                    android:id="@+id/genderText"
                     android:layout_width="0dp"
                     android:layout_height="39dp"
                     app:layout_constraintStart_toEndOf="@+id/genderTitle"
@@ -100,7 +101,6 @@
                     app:layout_constraintBottom_toBottomOf="@id/genderTitle"
                     android:layout_marginStart="18dp"
                     android:background="@drawable/button_background"
-                    android:text="여자아이"
                     android:textColor="#2BAE76"
                     android:fontFamily="@font/pretendard_bold"
                     android:gravity="center"/>
