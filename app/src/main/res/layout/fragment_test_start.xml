@@ -22,11 +22,11 @@
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/image"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:layout_width="300dp"
-        android:layout_height="315dp"
-        android:src="@drawable/main"/>
+        android:layout_height="315dp"/>
 
     <TextView
         android:layout_gravity="center"
