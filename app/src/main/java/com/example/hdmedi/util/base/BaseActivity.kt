@@ -1,4 +1,4 @@
-package com.example.hdmedi.activity
+package com.example.hdmedi.util.base
 
 import android.os.Bundle
 import android.view.MotionEvent
@@ -8,12 +8,14 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import com.example.hdmedi.HDmediApplication
 
 abstract class BaseActivity<T : ViewDataBinding>(
     @LayoutRes private val layoutResId: Int
 ) : AppCompatActivity() {
     protected lateinit var binding: T
     protected var editText: Array<EditText>? = emptyArray()
+    val preferences = HDmediApplication.preferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
