@@ -6,6 +6,7 @@
     <color name="main2">#34C185</color>
     <color name="main3">#00C67B</color>
     <color name="gray">#8E95A3</color>
+    <color name="gray500">#A5ADBD</color>
     <color name="gray700">#595F72</color>
     <color name="gray800">#353C49</color>
 </resources>
