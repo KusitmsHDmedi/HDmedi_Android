@@ -1,0 +1,94 @@
+package com.example.hdmedi.util
+
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import com.example.hdmedi.HDmediApplication
+import com.example.hdmedi.model.SurveyAllResponseBody
+import com.example.hdmedi.model.SurveyDetailResponseModel
+import com.example.hdmedi.service.RetrofitService
+import com.example.hdmedi.service.RetrofitBuilder
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+class SurveyAllViewModel : ViewModel(){
+
+    private lateinit var API : RetrofitService
+
+    private var _surveyAllList = MutableLiveData<SurveyAllResponseBody>()
+    var surveyAllList : LiveData<SurveyAllResponseBody> = _surveyAllList
+
+    private var _surveyDetailList = MutableLiveData<SurveyDetailResponseModel>()
+    var surveyDetailList : LiveData<SurveyDetailResponseModel> = _surveyDetailList
+
+//    init {
+//        getSurveyAll()
+//    }
+
+    fun getSurveyAll() {
+        API = RetrofitBuilder.retrofitInstance().create(RetrofitService::class.java)
+
+        val accessToken = HDmediApplication.preferences.getString("accessToken", "")
+
+        try{
+            API.getSurveyAll("Bearer $accessToken").enqueue(
+                object : Callback<SurveyAllResponseBody> {
+
+                    override fun onResponse(call: Call<SurveyAllResponseBody>, response: Response<SurveyAllResponseBody>) {
+                        if (response.isSuccessful) {
+
+                            _surveyAllList.value = response.body()
+                            Log.d("getSurveyAll  : ", "success  , ${response.body().toString()} , ${response.message()}, ${response.errorBody().toString()}")
+
+
+                        } else {
+
+                            Log.d("getSurveyAll Response : ", "fail 1 , ${response.body().toString()} , ${response.message()}, ${response.errorBody().toString()}")
+                        }
+                    }
+
+                    override fun onFailure(call: Call<SurveyAllResponseBody>, t: Throwable) {
+                        Log.d("getSurveyAll Response : ", " fail 2 , ${t.message.toString()}")
+                    }
+                })
+        } catch (e:Exception) {
+            Log.d("getSurveyAll response : ", " fail 3 , ${e.message}")
+        }
+
+    }
+
+    fun getSurveyResult(a : Long) {
+        API = RetrofitBuilder.retrofitInstance().create(RetrofitService::class.java)
+
+        val accessToken = HDmediApplication.preferences.getString("accessToken", "")
+
+        try{
+            API.getSurveyResult("Bearer $accessToken", a).enqueue(
+                object : Callback<SurveyDetailResponseModel> {
+
+                    override fun onResponse(call: Call<SurveyDetailResponseModel>, response: Response<SurveyDetailResponseModel>) {
+                        if (response.isSuccessful) {
+
+                            _surveyDetailList.value = response.body()
+                            Log.d("getSurveyResult  : ", "success  , ${response.body().toString()} , ${response.message()}, ${response.errorBody().toString()}")
+
+
+                        } else {
+
+                            Log.d("getSurveyResult Response : ", "fail 1 , ${response.body().toString()} , ${response.message()}, ${response.errorBody().toString()}")
+                        }
+                    }
+
+                    override fun onFailure(call: Call<SurveyDetailResponseModel>, t: Throwable) {
+                        Log.d("getSurveyResult Response : ", " fail 2 , ${t.message.toString()}")
+                    }
+                })
+        } catch (e:Exception) {
+            Log.d("getSurveyResult response : ", " fail 3 , ${e.message}")
+        }
+
+    }
+}
+
