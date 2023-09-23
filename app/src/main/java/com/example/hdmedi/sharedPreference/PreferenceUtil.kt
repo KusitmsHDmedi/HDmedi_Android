@@ -2,7 +2,6 @@ package com.example.hdmedi.sharedPreference
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.example.hdmedi.sharedPreference.MyApplication.Companion.preferences
 
 class PreferenceUtil(context: Context) {
 

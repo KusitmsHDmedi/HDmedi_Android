@@ -38,6 +38,7 @@
                 android:fontFamily="@font/pretendard_semibold"
                 android:text="자가 진단 결과"
                 android:textSize="24dp"
+                android:textColor="@color/black"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
                 app:layout_constraintStart_toStartOf="parent"

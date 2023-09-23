@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activity.CheckInfoActivity"
+        tools:context=".ui.onboarding.teacher.CheckInfoActivity"
         android:paddingStart="20dp"
         android:paddingEnd="20dp">
 
@@ -51,8 +51,7 @@
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:src="@drawable/ic_child"/>
+                    app:layout_constraintTop_toTopOf="parent"/>
 
                 <TextView
                     android:id="@+id/nameText"

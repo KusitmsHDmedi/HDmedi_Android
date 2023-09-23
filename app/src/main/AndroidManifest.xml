@@ -10,28 +10,27 @@
     <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
-        android:name=".sharedPreference.MyApplication"
+        android:name=".HDmediApplication"
         android:allowBackup="true"
         android:usesCleartextTraffic="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/ic_app"
-        android:label="@string/app_name"
+        android:label="아이약"
         android:roundIcon="@drawable/ic_app_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HDmedi"
         tools:targetApi="31">
         <activity
-            android:name=".activity.ResultCompareActivity"
-            android:exported="true">
-
-        </activity>
-        <activity
-            android:name=".activity.DetailResultActivity"
+            android:name=".ui.main.result.compare.ResultCompareActivity"
             android:exported="true">
         </activity>
         <activity
-            android:name=".activity.SplashActivity"
+            android:name=".ui.main.result.DetailResultActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".ui.splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,35 +38,35 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.LoginActivity"
+            android:name=".ui.onboarding.login.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".ui.test.MainActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.SendResultActivity"
+            android:name=".ui.test.result.sendResult.SendResultActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.RequestResultParentActivity"
+            android:name=".ui.test.result.sendResult.RequestResultParentActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.CheckInfoActivity"
+            android:name=".ui.onboarding.teacher.CheckInfoActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.CheckResultActivity"
+            android:name=".ui.main.result.CheckResultActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.HomeActivity"
+            android:name=".ui.main.HomeActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.TeacherSettingActivity"
+            android:name=".ui.onboarding.teacher.TeacherSettingActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.onboarding.parent.ParentsSettingActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.ParentsSettingActivity"
-            android:exported="true" />
-        <activity
-            android:name=".activity.OnBoardingActivity"
+            android:name=".ui.onboarding.OnBoardingActivity"
             android:exported="true" />
     </application>
-
 </manifest>

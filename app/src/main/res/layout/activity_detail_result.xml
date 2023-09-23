@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".activity.DetailResultActivity"
+    tools:context=".ui.main.result.DetailResultActivity"
     android:orientation="vertical">
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/backButton"
@@ -157,6 +155,31 @@
                     android:fontFamily="@font/pretendard_semibold"
                     android:textColor="@color/black"/>
             </androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/teacherScoreText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="34"
+                android:textSize="68sp"
+                android:fontFamily="@font/pretendard_semibold"
+                android:textColor="@color/main2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/teacherCardView"
+                app:layout_constraintHorizontal_bias="0.5"/>
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="점"
+                android:textSize="20sp"
+                android:fontFamily="@font/pretendard_semibold"
+                android:layout_marginBottom="14dp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toEndOf="@+id/teacherScoreText"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/teacherScoreText"/>
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/detailTextTeacher"
@@ -164,10 +187,9 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/teacherCardView"
+                app:layout_constraintTop_toBottomOf="@id/teacherScoreText"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginBottom="40dp"
-                android:layout_marginTop="20dp"
                 android:backgroundTint="#FFFFFF"
                 app:strokeWidth="0dp"
                 app:cardElevation="3dp"
@@ -177,6 +199,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <TextView
+                        android:id="@+id/scoreInfo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="아직 선생님이 검사를\n진행하지 않았어요!"
@@ -213,8 +236,9 @@
         android:layout_marginBottom="28dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/button_inactivated"
+        android:background="@drawable/button_selector"
         android:text="문항별 비교 보러가기"
+        android:textColor="@color/gray700"
         android:fontFamily="@font/pretendard_semibold"
         android:textSize="16sp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,7 +5,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.CheckResultActivity"
+    tools:context=".ui.main.result.CheckResultActivity"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatButton
