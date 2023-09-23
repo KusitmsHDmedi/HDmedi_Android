@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activity.TeacherSettingActivity"
+        tools:context=".ui.onboarding.teacher.TeacherSettingActivity"
         android:orientation="vertical"
         android:paddingStart="20dp"
         android:paddingEnd="20dp">
@@ -37,6 +37,8 @@
             android:background="@drawable/gender_button_selector"
             android:layout_marginTop="45dp"
             android:paddingStart="19dp"
+            android:maxLines="1"
+            android:maxLength="6"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleText" />

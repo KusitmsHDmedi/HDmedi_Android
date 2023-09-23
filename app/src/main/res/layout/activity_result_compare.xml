@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragment.Result1Fragment">
+        tools:context=".ui.test.result.Result1Fragment">
         <TextView
             android:id="@+id/titleText"
             android:layout_width="wrap_content"
@@ -21,7 +21,7 @@
 
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView"
+            android:id="@+id/question"
             android:layout_width="144dp"
             android:layout_height="40dp"
             app:cardCornerRadius="6dp"
@@ -47,7 +47,7 @@
             android:backgroundTint="#00C67B"
             app:strokeColor="#C4CAD4"
             app:strokeWidth="1dp"
-            app:layout_constraintStart_toEndOf="@+id/materialCardView"
+            app:layout_constraintStart_toEndOf="@+id/question"
             app:layout_constraintTop_toBottomOf="@+id/titleText"
             android:layout_marginTop="37dp"
             android:layout_marginEnd="20dp"
@@ -107,13 +107,13 @@
             android:layout_marginBottom="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/materialCardView"
-            app:layout_constraintBottom_toTopOf="@id/btnNext"
+            app:layout_constraintTop_toBottomOf="@+id/question"
+            app:layout_constraintBottom_toTopOf="@id/button"
             tools:listitem="@layout/result_item"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnNext"
+            android:id="@+id/button"
             android:layout_width="0dp"
             android:layout_height="56dp"
             app:layout_constraintStart_toStartOf="parent"
